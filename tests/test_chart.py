@@ -6,6 +6,10 @@ HUB = (ROOT/'src'/'chart'/'index.html').read_text(encoding='utf-8')
 CANDLE = (ROOT/'src'/'chart'/'beginner'/'candlestick.html').read_text(encoding='utf-8')
 JS = (ROOT/'src'/'chart'/'assets'/'candlestick.js').read_text(encoding='utf-8')
 CSS = (ROOT/'src'/'chart'/'assets'/'chart.css').read_text(encoding='utf-8')
+FOUNDATIONS = (ROOT/'src'/'chart'/'assets'/'foundations.js').read_text(encoding='utf-8')
+VOLUME = (ROOT/'src'/'chart'/'beginner'/'volume.html').read_text(encoding='utf-8')
+TREND = (ROOT/'src'/'chart'/'beginner'/'trend-structure.html').read_text(encoding='utf-8')
+SUPPORT = (ROOT/'src'/'chart'/'beginner'/'support-resistance.html').read_text(encoding='utf-8')
 
 class ChartLearningTest(unittest.TestCase):
     def test_hub_has_three_learning_levels_and_lab(self):
@@ -22,6 +26,19 @@ class ChartLearningTest(unittest.TestCase):
         self.assertIn('initLearningChart', JS)
         self.assertIn('fallback', JS)
         self.assertIn('marketChart', JS)
+
+    def test_foundation_lessons_cover_decision_sequence(self):
+        for needle in ['최근 평균','가격 ↑ · 거래량 ↑','거래량만으로 매매 금지']:
+            self.assertIn(needle, VOLUME)
+        for needle in ['HH','HL','LH','LL','시간축']:
+            self.assertIn(needle, TREND)
+        for needle in ['선보다 구간','재테스트','역할 전환','가짜 돌파']:
+            self.assertIn(needle, SUPPORT)
+        for needle in ['drawVolume','drawTrend','drawSR']:
+            self.assertIn(needle, FOUNDATIONS)
+        combined = HUB + CANDLE + VOLUME + TREND + SUPPORT
+        for forbidden in ['와이프','남편','아내']:
+            self.assertNotIn(forbidden, combined)
 
     def test_chart_module_is_responsive(self):
         self.assertIn('@media(max-width:760px)', CSS)
