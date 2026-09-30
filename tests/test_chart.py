@@ -10,6 +10,9 @@ FOUNDATIONS = (ROOT/'src'/'chart'/'assets'/'foundations.js').read_text(encoding=
 VOLUME = (ROOT/'src'/'chart'/'beginner'/'volume.html').read_text(encoding='utf-8')
 TREND = (ROOT/'src'/'chart'/'beginner'/'trend-structure.html').read_text(encoding='utf-8')
 SUPPORT = (ROOT/'src'/'chart'/'beginner'/'support-resistance.html').read_text(encoding='utf-8')
+MA = (ROOT/'src'/'chart'/'beginner'/'moving-average.html').read_text(encoding='utf-8')
+PRACTICE = (ROOT/'src'/'chart'/'beginner'/'beginner-practice.html').read_text(encoding='utf-8')
+BEGINNER_LAB = (ROOT/'src'/'chart'/'assets'/'beginner-lab.js').read_text(encoding='utf-8')
 
 class ChartLearningTest(unittest.TestCase):
     def test_hub_has_three_learning_levels_and_lab(self):
@@ -36,7 +39,13 @@ class ChartLearningTest(unittest.TestCase):
             self.assertIn(needle, SUPPORT)
         for needle in ['drawVolume','drawTrend','drawSR']:
             self.assertIn(needle, FOUNDATIONS)
-        combined = HUB + CANDLE + VOLUME + TREND + SUPPORT
+        for needle in ['후행지표','SMA 20','골든크로스','횡보장']:
+            self.assertIn(needle, MA)
+        for needle in ['미래를 가린','무효화 기준','분할매수','초급 최종']:
+            self.assertIn(needle, PRACTICE)
+        for needle in ['drawMA','drawLab','미래 구간','labScenarios']:
+            self.assertIn(needle, BEGINNER_LAB)
+        combined = HUB + CANDLE + VOLUME + TREND + SUPPORT + MA + PRACTICE
         for forbidden in ['와이프','남편','아내']:
             self.assertNotIn(forbidden, combined)
 
