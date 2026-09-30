@@ -21,7 +21,7 @@ def render_lesson(body):
             raise ValueError('Unknown widget: '+key)
         widgets.append(key)
         return f'FINANCEWIDGET{len(widgets)-1}TOKEN'
-    body=re.sub(r'^:::([a-z-]+)\s*$',token,body,flags=re.M)
+    body=re.sub(r'^:::([a-z-]+)[ \t]*$',token,body,flags=re.M)
     rendered=markdown_to_html(body)
     for i,key in enumerate(widgets):
         rendered=rendered.replace(
