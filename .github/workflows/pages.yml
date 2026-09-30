@@ -22,7 +22,9 @@ jobs:
         with:
           node-version: '22'
       - name: Calculation tests
-        run: node tests/math.test.cjs
+        run: |
+          node tests/math.test.cjs
+          node tests/navigation.test.cjs
       - name: Builder tests
         run: python -m unittest discover -s tests -p 'test_*.py'
       - name: Build educational site

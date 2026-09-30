@@ -2,7 +2,7 @@
 (function(){
 const lessons=JSON.parse(document.getElementById('lesson-data').textContent);
 const byId=new Map(lessons.map(x=>[x.id,x]));
-const essentials=lessons.filter(x=>!x.parent&&x.classification==='필수');
+const essentials=lessons.filter(x=>x.classification==='필수');
 const $=id=>document.getElementById(id);
 let current,completed={};
 try{const state=JSON.parse(localStorage.getItem('finance-study-v1')||'{}');if(state&&typeof state==='object'&&!Array.isArray(state))completed=state;}catch{}
@@ -15,10 +15,11 @@ $('breadcrumb').textContent='우리집 금융공부 / '+x.phase;$('read-time').t
 $('toc').replaceChildren();$('article').querySelectorAll('h2').forEach((h,i)=>{h.dataset.number=String(i+1).padStart(2,'0');const a=document.createElement('a');a.href='#'+x.id+'/'+h.id;a.textContent=h.textContent;a.onclick=e=>{e.preventDefault();history.replaceState(null,'',a.href);h.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});};$('toc').append(a);});
 window.FinanceWidgets.hydrate($('article'));
 $('complete').checked=!!completed[x.id];$('download').href='notes/'+x.id+'.md';
-const sequence=x.parent?[byId.get(x.parent),...lessons.filter(y=>y.parent===x.parent)]:lessons.filter(y=>!y.parent);
+const sequence=window.FinanceCatalog.sequence(lessons);
 const i=sequence.indexOf(x);for(const [which,item,label]of[['prev',sequence[i-1],'이전 공부'],['next',sequence[i+1],'다음 공부']]){const a=$(which);a.replaceChildren();if(item){a.hidden=false;a.href='#'+item.id;const small=document.createElement('small');small.textContent=label;a.append(small,document.createTextNode((which==='prev'?'← ':'')+item.title+(which==='next'?' →':'')));}else{a.hidden=true;a.removeAttribute('href');}}
 nav();closeMenu();const anchor=location.hash.split('/')[1];if(anchor){const section=$('article').querySelector('[id="'+anchor.replace(/[^a-z0-9-]/g,'')+'"]');if(section)section.scrollIntoView();}else{window.scrollTo({top:0,behavior:'instant'});}
 }
+document.querySelector('.skip').onclick=e=>{e.preventDefault();$('main').focus();$('main').scrollIntoView();};
 $('complete').onchange=()=>{completed[current.id]=$('complete').checked;try{localStorage.setItem('finance-study-v1',JSON.stringify(completed));}catch{}nav();};
 $('search').oninput=nav;$('print').onclick=()=>window.print();$('menu').onclick=()=>{const open=!$('sidebar').classList.contains('open');$('sidebar').classList.toggle('open',open);$('scrim').hidden=!open;$('menu').setAttribute('aria-expanded',String(open));document.body.classList.toggle('menu-open',open);if(open)$('search').focus();};$('scrim').onclick=closeMenu;
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeMenu();$('menu').focus();}if(e.key==='/'&&!['INPUT','TEXTAREA','SELECT'].includes(document.activeElement.tagName)){e.preventDefault();if(innerWidth<=780&&!$('sidebar').classList.contains('open'))$('menu').click();$('search').focus();}});

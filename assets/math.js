@@ -12,5 +12,6 @@ function recovery(drop){if(!Number.isFinite(drop)||drop<0||drop>=100)throw new R
 function stress(initial,stocks,stockReturn,safeReturn){return initial*(stocks/100*(1+stockReturn/100)+(1-stocks/100)*(1+safeReturn/100));}
 function isaTax(profit,allowance){return Math.round(Math.max(0,profit-allowance)*.099*100)/100;}
 function pensionCredit(pension,irp,salary){const base=Math.min(900,Math.min(600,Math.max(0,pension))+Math.max(0,irp));return Math.round(base*(salary<=5500?.165:.132)*100)/100;}
-return {project,recovery,stress,isaTax,pensionCredit};
+function irpPurchase(stockValue,safeValue,monthly){const allowed=Math.max(0,.7*(stockValue+safeValue+monthly)-stockValue),stock=Math.min(monthly*.7,allowed);return {stock,safe:monthly-stock};}
+return {project,recovery,stress,isaTax,pensionCredit,irpPurchase};
 });

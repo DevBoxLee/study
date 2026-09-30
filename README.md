@@ -24,7 +24,7 @@
 
 ## 로컬 실행과 검증
 
-필요 런타임은 Python3.10+ 및 테스트용 Node22+입니다. 사이트 자체에는 Node·npm·서버·DB가 필요하지 않습니다.
+필요 런타임은 Python3.12+ 및 테스트용 Node22+입니다. 사이트 자체에는 Node·npm·서버·DB가 필요하지 않습니다.
 
 ```bash
 python tools/build_site.py

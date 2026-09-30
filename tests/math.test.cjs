@@ -10,3 +10,5 @@ test('40% 하락은 회복에 66.67%가 필요',()=>{assert.equal(typeof m.recov
 test('80:20 배분에서 주식 -40%와 안정자산 -10%를 모두 반영',()=>{assert.equal(typeof m.stress,'function');assert.ok(Math.abs(m.stress(6000,80,-40,-10)-3960)<1e-8);});
 test('ISA 비과세는 순이익에 한 번 적용, 손실에는 0',()=>{assert.equal(typeof m.isaTax,'function');assert.equal(m.isaTax(500,200),29.7);assert.equal(m.isaTax(-100,200),0);assert.equal(m.isaTax(500,400),9.9);});
 test('연금저축 600·합계 900 한도와 소득별 공제',()=>{assert.equal(typeof m.pensionCredit,'function');assert.equal(m.pensionCredit(700,300,5500),148.5);assert.equal(m.pensionCredit(600,300,5501),118.8);assert.equal(m.pensionCredit(600,0,5500),99);});
+test('IRP 주식 상승 후 계좌 전체 70%를 넘지 않는 추가매수금 계산',()=>{assert.equal(typeof m.irpPurchase,'function');const x=m.irpPurchase(77,30,25);assert.ok(Math.abs(x.stock-15.4)<1e-8);assert.ok(Math.abs(x.safe-9.6)<1e-8);assert.ok((77+x.stock)/132<=.7+1e-12);});
+test('IRP 초과비중을 신규자금만으로 복원할 수 없으면 위험자산을 추가하지 않음',()=>{assert.equal(typeof m.irpPurchase,'function');assert.equal(m.irpPurchase(100,0,25).stock,0);assert.equal(m.irpPurchase(100,0,25).safe,25);});
