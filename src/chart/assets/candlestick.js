@@ -75,7 +75,7 @@
   function initLwc(){
     if(!chartEl || !window.LightweightCharts || chart) return !!chart;
     try{
-      chart=LightweightCharts.createChart(chartEl,{width:chartEl.clientWidth,height:390,layout:{background:{type:'solid',color:'#0b1220'},textColor:'#94a3b8'},grid:{vertLines:{color:'#172033'},horzLines:{color:'#172033'}},rightPriceScale:{borderColor:'#334155'},timeScale:{borderColor:'#334155',timeVisible:false}});
+      chart=LightweightCharts.createChart(chartEl,{width:chartEl.clientWidth,height:390,localization:{locale:'ko-KR'},layout:{background:{type:'solid',color:'#0b1220'},textColor:'#94a3b8'},grid:{vertLines:{color:'#172033'},horzLines:{color:'#172033'}},rightPriceScale:{borderColor:'#334155'},timeScale:{borderColor:'#334155',timeVisible:false}});
       let cs,vs;
       if(chart.addSeries && LightweightCharts.CandlestickSeries){
         cs=chart.addSeries(LightweightCharts.CandlestickSeries,{upColor:'#10b981',downColor:'#ef4444',borderVisible:false,wickUpColor:'#10b981',wickDownColor:'#ef4444'});
