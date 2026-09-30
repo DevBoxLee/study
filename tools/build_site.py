@@ -47,9 +47,12 @@ def build():
         dist/'chart'/'beginner'/'volume.html',
         dist/'chart'/'beginner'/'trend-structure.html',
         dist/'chart'/'beginner'/'support-resistance.html',
+        dist/'chart'/'beginner'/'moving-average.html',
+        dist/'chart'/'beginner'/'beginner-practice.html',
         dist/'chart'/'assets'/'chart.css',
         dist/'chart'/'assets'/'candlestick.js',
         dist/'chart'/'assets'/'foundations.js',
+        dist/'chart'/'assets'/'beginner-lab.js',
     ]
     missing=[str(p.relative_to(dist)) for p in required_paths if not p.exists()]
     if missing:
