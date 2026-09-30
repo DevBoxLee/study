@@ -63,7 +63,7 @@ class ChartLearningTest(unittest.TestCase):
         combined = '\n'.join(INTERMEDIATE.values())
         for needle in ['시장구조와 추세전환','돌파와 이탈','눌림목과 되돌림','거래량 검증','패턴 · RSI · MACD','분할매수 · 분할매도']:
             self.assertIn(needle, combined)
-        for needle in ['구조 변화 후보','가짜 돌파','눌림 실패','다이버전스','물타기']:
+        for needle in ['구조 변화 후보','가짜 돌파','구조 실패','다이버전스','물타기']:
             self.assertIn(needle, combined)
 
     def test_advanced_curriculum_is_complete(self):
@@ -71,7 +71,7 @@ class ChartLearningTest(unittest.TestCase):
         combined = '\n'.join(ADVANCED.values())
         for needle in ['멀티 타임프레임','실패 신호','변동성 · ATR','손절 · Risk/Reward','포지션 사이징','스윙 · 매매 복기']:
             self.assertIn(needle, combined)
-        for needle in ['시간축 쇼핑','Bull Trap','ATR 기반 손절','기대값','1회 위험예산','과정 점수']:
+        for needle in ['시간축 쇼핑','Bull/Bear Trap','ATR 기반 손절','기대값','1회 위험예산','과정 점수']:
             self.assertIn(needle, combined)
         for needle in ['initScenario','initAtr','initRR','initPosition','initMTF','initReview']:
             self.assertIn(needle, LEVEL_LAB)
