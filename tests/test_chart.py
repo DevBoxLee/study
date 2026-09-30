@@ -28,7 +28,7 @@ class ChartLearningTest(unittest.TestCase):
         self.assertIn('marketChart', JS)
 
     def test_foundation_lessons_cover_decision_sequence(self):
-        for needle in ['최근 평균','가격 × 거래량','거래량만으로 매매 금지']:
+        for needle in ['최근 평균','가격 ↑ · 거래량 ↑','거래량만으로 매매 금지']:
             self.assertIn(needle, VOLUME)
         for needle in ['HH','HL','LH','LL','시간축']:
             self.assertIn(needle, TREND)
