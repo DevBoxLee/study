@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build the finance study site from flexible lesson blocks."""
+"""Build the tax-account study site from flexible lesson blocks."""
 from pathlib import Path
 import json,re,shutil
 from markdown import markdown_to_html
@@ -7,7 +7,8 @@ from markdown import markdown_to_html
 ROOT=Path(__file__).resolve().parents[1]
 WIDGETS={
     'roadmap','money-story','horizon-timeline','compound','risk-lab','allocation-lab',
-    'etf-anatomy','account-map','account-quiz','tax-basics','isa-bridge','account-priority','early-withdrawal','pension-withdrawal','tax-compound-compare','policy-dashboard',
+    'etf-anatomy','account-map','account-quiz','tax-basics','isa-bridge','account-priority',
+    'early-withdrawal','pension-withdrawal','tax-compound-compare','policy-dashboard',
     'buckets','drawdown','allocation','etf','accounts','isa','pension','irp',
     'tax-location','policy','filter'
 }
@@ -57,52 +58,12 @@ def load_lessons():
             raise ValueError('Invalid id')
         if not re.fullmatch(r'\d{4}-\d{2}-\d{2}',meta['updated']):
             raise ValueError('Invalid date')
-        if len(body.strip()) < 180 and not re.search(r'^:::[a-z-]+[ \\t]*
-        if meta['classification']=='필수' and not re.search(r'\]\(https://',body) and meta.get('sources')!='19-sources':
-            raise ValueError(f'Missing official source link or shared source page: {path}')
-        meta.update(
-            body=render_lesson(body),
-            search=body,
-            source=str(path.relative_to(ROOT))
-        )
-        lessons.append(meta)
-
-    ids={l['id'] for l in lessons}
-    if len(ids)!=len(lessons):
-        raise ValueError('Duplicate lesson id')
-    for lesson in lessons:
-        if lesson.get('parent') and lesson['parent'] not in ids:
-            raise ValueError('Missing parent')
-        for target in re.findall(r'\]\(#([a-z0-9-]+)\)',lesson['search']):
-            if target not in ids:
-                raise ValueError('Broken lesson link: '+target)
-    return lessons
-
-def build():
-    lessons=load_lessons()
-    dist=ROOT/'dist'
-    if dist.exists():
-        shutil.rmtree(dist)
-    (dist/'assets').mkdir(parents=True)
-    for p in (ROOT/'assets').iterdir():
-        if p.is_file():
-            shutil.copy2(p,dist/'assets'/p.name)
-    data=json.dumps(lessons,ensure_ascii=False).replace('<','\\u003c').replace('>','\\u003e').replace('&','\\u0026')
-    template=(ROOT/'src/shell.html').read_text(encoding='utf-8')
-    out=template.replace('<!--LESSONS-->',data)
-    (dist/'index.html').write_text(out,encoding='utf-8')
-    (dist/'.nojekyll').write_text('')
-    (dist/'404.html').write_text(out,encoding='utf-8')
-    (dist/'notes').mkdir()
-    for lesson in lessons:
-        shutil.copy2(ROOT/lesson['source'],dist/'notes'/(lesson['id']+'.md'))
-    print(f'Built {len(lessons)} lessons → dist/index.html ({len(out.encode()):,} bytes)')
-
-if __name__=='__main__':
-    build()
-,body,flags=re.M):
+        has_widget=bool(re.search(r'^:::[a-z-]+[ \t]*$',body,flags=re.M))
+        if len(body.strip()) < 180 and not has_widget:
             raise ValueError(f'Lesson too short: {path}')
-        if meta['classification']=='필수' and not re.search(r'\]\(https://',body) and meta.get('sources')!='19-sources':
+        has_direct_source=bool(re.search(r'https://',body))
+        has_shared_source=meta.get('sources')=='19-sources'
+        if meta['classification']=='필수' and not has_direct_source and not has_shared_source:
             raise ValueError(f'Missing official source link or shared source page: {path}')
         meta.update(
             body=render_lesson(body),
