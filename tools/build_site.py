@@ -3,7 +3,8 @@ from pathlib import Path
 import re, shutil
 
 ROOT=Path(__file__).resolve().parents[1]
-SOURCE=ROOT/'src'/'index.html'
+SOURCE_DIR=ROOT/'src'
+SOURCE=SOURCE_DIR/'index.html'
 EXPECTED=[
 'overview','tax','pension','irp','isa','compare','compound','bridge','purpose',
 'priority','couple','portfolio','mistakes','early','withdraw','faq','summary','onepage','sources'
@@ -37,11 +38,19 @@ def build():
     validate(text)
     dist=ROOT/'dist'
     if dist.exists(): shutil.rmtree(dist)
-    dist.mkdir()
-    (dist/'index.html').write_text(text,encoding='utf-8')
+    shutil.copytree(SOURCE_DIR, dist)
     (dist/'404.html').write_text(text,encoding='utf-8')
     (dist/'.nojekyll').write_text('')
-    print(f'Built canonical 19-section guide ({len(text.encode()):,} bytes)')
+    required_paths=[
+        dist/'chart'/'index.html',
+        dist/'chart'/'beginner'/'candlestick.html',
+        dist/'chart'/'assets'/'chart.css',
+        dist/'chart'/'assets'/'candlestick.js',
+    ]
+    missing=[str(p.relative_to(dist)) for p in required_paths if not p.exists()]
+    if missing:
+        raise ValueError(f'Missing chart learning assets: {missing}')
+    print(f'Built finance guide + chart learning module ({len(text.encode()):,} index bytes)')
 
 if __name__=='__main__':
     build()
