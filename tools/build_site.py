@@ -59,8 +59,8 @@ def load_lessons():
             raise ValueError('Invalid date')
         if len(body.strip()) < 180:
             raise ValueError(f'Lesson too short: {path}')
-        if meta['classification']=='필수' and not re.search(r'\]\(https://',body):
-            raise ValueError(f'Missing official source link: {path}')
+        if meta['classification']=='필수' and not re.search(r'\]\(https://',body) and meta.get('sources')!='19-sources':
+            raise ValueError(f'Missing official source link or shared source page: {path}')
         meta.update(
             body=render_lesson(body),
             search=body,
