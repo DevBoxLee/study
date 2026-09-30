@@ -76,7 +76,8 @@ const root=path.resolve(__dirname,'..');
    await page.setViewportSize({width:375,height:850});
    for(const p of ['volume.html','trend-structure.html','support-resistance.html']){
      await page.goto('http://127.0.0.1:8765/chart/beginner/'+p);
-     assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
+     const ov=await page.evaluate(()=>({overflow:document.documentElement.scrollWidth>innerWidth,scrollWidth:document.documentElement.scrollWidth,innerWidth,wide:[...document.querySelectorAll('*')].filter(el=>el.getBoundingClientRect().right>innerWidth+1).slice(0,5).map(el=>({tag:el.tagName,cls:el.className,right:Math.round(el.getBoundingClientRect().right)}))}));
+     assert.equal(ov.overflow,false,p+' mobile overflow '+JSON.stringify(ov));
    }
    await page.screenshot({path:path.join(root,'artifacts/chart-support-mobile.png'),fullPage:true});
 
