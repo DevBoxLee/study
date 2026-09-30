@@ -49,10 +49,23 @@ def build():
         dist/'chart'/'beginner'/'support-resistance.html',
         dist/'chart'/'beginner'/'moving-average.html',
         dist/'chart'/'beginner'/'beginner-practice.html',
+        dist/'chart'/'intermediate'/'market-structure.html',
+        dist/'chart'/'intermediate'/'breakout.html',
+        dist/'chart'/'intermediate'/'pullback.html',
+        dist/'chart'/'intermediate'/'volume-confirmation.html',
+        dist/'chart'/'intermediate'/'patterns-indicators.html',
+        dist/'chart'/'intermediate'/'scaling-exits.html',
+        dist/'chart'/'advanced'/'multi-timeframe.html',
+        dist/'chart'/'advanced'/'failed-signals.html',
+        dist/'chart'/'advanced'/'volatility-atr.html',
+        dist/'chart'/'advanced'/'risk-reward-stop.html',
+        dist/'chart'/'advanced'/'position-sizing.html',
+        dist/'chart'/'advanced'/'swing-review.html',
         dist/'chart'/'assets'/'chart.css',
         dist/'chart'/'assets'/'candlestick.js',
         dist/'chart'/'assets'/'foundations.js',
         dist/'chart'/'assets'/'beginner-lab.js',
+        dist/'chart'/'assets'/'level-lab.js',
     ]
     missing=[str(p.relative_to(dist)) for p in required_paths if not p.exists()]
     if missing:
