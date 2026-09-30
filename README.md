@@ -1,64 +1,67 @@
-# 우리집 금융공부 & 투자설계
+# 연금저축 · IRP · ISA 절세계좌 교과서
 
-부부가 같은 교육용 사례로 금융 개념을 배우고 투자 운영규칙까지 만드는 정적 학습 사이트입니다.
+첨부 `index.html`을 기준 문서(source of truth)로 삼아, 연금저축·IRP·ISA 내용을 **19개 섹션**으로 그대로 재구성한 GitHub Pages 사이트입니다.
 
 **사이트:** https://devboxlee.github.io/study/
 
-## v2 학습방식
+## 현재 구조
 
-모든 챕터를 같은 템플릿에 끼워 넣지 않습니다. 주제에 가장 잘 맞는 학습경험을 선택합니다.
+기존의 00 투자원칙, 투자 가능한 돈, 투자기간, 위험과 수익, 자산배분, ETF 기초, 투자 운영규칙, 99 후순위 공부 메뉴는 제거했습니다.
 
-- 00: 로드맵
-- 01: A/B 사고 시나리오
-- 02: 시간축 + 복리 시뮬레이션
-- 03: 손실 체험
-- 04: 자산배분 실험
-- 05: ETF 해부·비교
-- 06: 절세계좌 카드·세금흐름·퀴즈
-- 07: 투자 운영 대시보드
+사이트 메뉴는 첨부 `index.html`의 다음 19개 섹션만 사용합니다.
 
-공통 사례는 금융자산 1억원, 비상금 1,500만원, 목적자금 2,500만원, 장기자금 6,000만원, 월 150만원, 기간 20~30년입니다. 실제 평균 가구나 개인 재무자료가 아닙니다.
+1. 3대 절세계좌 한눈에 보기
+2. 세금 기초
+3. 연금저축 완전정복
+4. IRP 완전정복
+5. ISA 완전정복
+6. 연금저축 · IRP · ISA 완전 비교
+7. 일반계좌까지 포함한 장기 시뮬레이션 · 복리와 과세이연
+8. ISA → 연금저축/IRP 절세 파이프라인
+9. 어떤 돈을 어디에 넣을까? — 사용시점 타임라인
+10. 가입 우선순위
+11. 맞벌이 부부 절세 전략
+12. 세제계좌를 만든 뒤 실제 ETF 운용
+13. 자주 하는 실수 — O/X 퀴즈
+14. 중도해지 시나리오
+15. 연금수령 전략
+16. FAQ 33개
+17. 마지막 5분 요약
+18. 한 장 정리
+19. Fact Check · 공식 출처
 
-## 내용 추가
+## 원본 충실도 원칙
 
-1. content/_template.md를 참고해 고유 id, 제목, 분류, experience, 확인일을 작성합니다.
-2. experience는 페이지의 학습방식입니다. 동일한 10개 섹션은 더 이상 강제하지 않습니다.
-3. 새 주제는 투자 의사결정·세금·비용·위험·계좌 선택에 영향을 주는지 먼저 판단합니다.
-4. 세법·제도는 현행법과 정부안을 분리하고 공식자료 링크와 확인일을 남깁니다.
-5. 시각·계산 블록은 :::money-story, :::compound, :::risk-lab, :::account-map처럼 등록된 블록을 조합합니다.
-6. PR 검증 후 main에 병합하면 GitHub Pages가 자동 배포됩니다.
+- 원본의 숫자 예제, 비교표, FAQ, O/X 설명, 수령 시나리오를 생략하지 않습니다.
+- 원본의 인터랙티브 영역은 현재 사이트 위젯으로 다시 구현합니다.
+- `[S1]~[S15]` 참조코드는 19번 Fact Check에서 공식 출처와 연결합니다.
+- 정부안·개정안·시행 예정 내용은 현행 제도와 구분합니다.
+- 내용 변경 시 먼저 첨부 기준문서와 비교한 뒤 수정합니다.
 
-## 향후 확장
+## 저장소 구조
 
-주식 차트·캔들·거래량·추세·차트패턴은 별도 학습 모듈로 추가할 예정입니다. docs/v2-learning-experience.md에 확장 원칙을 기록했습니다. 실제 시장데이터를 사용할 경우 출처·시간대·조정주가 여부를 명시합니다.
+- `content/01-overview.md ... content/19-sources.md`: 19개 섹션
+- `tools/build_site.py`: 정적 사이트 빌더
+- `src/shell.html`: 공통 페이지 셸
+- `assets/widgets.js`: 세액공제·ISA·IRP·과세이연·퀴즈 인터랙션
+- `assets/style.css`: 디자인 시스템
+- `tests`: 섹션 수, 삭제된 구 메뉴, 계산, 브라우저·모바일 검증
+- `.github/workflows/pages.yml`: GitHub Pages 자동 검증·배포
 
 ## 로컬 실행
 
 ```bash
 python tools/build_site.py
 python -m http.server 8000 --directory dist
-node tests/math.test.cjs
 python -m unittest discover -s tests -p 'test_*.py'
+node tests/math.test.cjs
+node tests/navigation.test.cjs
 ```
 
-화면 검증은 Playwright를 사용합니다.
+브라우저 검증:
 
 ```bash
 npm install --no-save playwright@1.56.1
 npx playwright install --with-deps chromium
 node tests/browser.cjs
 ```
-
-## 저장소 구조
-
-- content: 원본 Markdown
-- tools: Python 빌더
-- src/shell.html: 공통 페이지 셸
-- assets/widgets.js: 학습 인터랙션
-- assets/style.css: 디자인 시스템
-- tests: 계산·빌드·브라우저 검사
-- docs/fact-check.md: 공식자료 검증 기록
-- docs/v2-learning-experience.md: v2 UX 및 향후 차트 확장 설계
-- .github/workflows/pages.yml: 자동 검증·배포
-
-dist는 자동 생성되며 커밋하지 않습니다. 실제 소득·계좌번호·개인 잔액 등 민감한 재무정보는 공개 저장소에 기록하지 않습니다.

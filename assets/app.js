@@ -6,7 +6,7 @@ const essentials=lessons.filter(x=>x.classification==='필수');
 const $=id=>document.getElementById(id);
 let current,completed={};
 try{
-  const raw=localStorage.getItem('finance-study-v2')||localStorage.getItem('finance-study-v1')||'{}';
+  const raw=localStorage.getItem('tax-account-guide-v1')||'{}';
   const state=JSON.parse(raw);
   if(state&&typeof state==='object'&&!Array.isArray(state))completed=state;
 }catch{}
@@ -32,7 +32,7 @@ function nav(){
     for(const x of lessons.filter(x=>!x.parent)){
       if(x.phase!==phase){
         const d=document.createElement('div');d.className='phase-label';
-        d.textContent=x.phase==='투자설계'?'01 · 투자설계':x.phase==='투자수단'?'02 · 투자수단':x.phase==='실행'?'03 · 실행':x.phase==='보관'?'필요할 때':'START';
+        d.textContent=x.phase==='절세계좌'?'연금저축 · IRP · ISA · 19 SECTIONS':x.phase;
         tree.append(d);phase=x.phase;
       }
       tree.append(navLink(x));
@@ -53,13 +53,13 @@ function route(){
   let id=location.hash.slice(1).split('/')[0];try{id=decodeURIComponent(id);}catch{}
   const x=byId.get(id)||lessons[0];current=x;
   document.body.dataset.experience=x.experience||'guide';
-  $('breadcrumb').textContent='우리집 금융공부 / '+x.phase;
+  $('breadcrumb').textContent='연금저축 · IRP · ISA / '+x.phase;
   $('read-time').textContent=(x.minutes||8)+'분';
   $('lesson-tag').textContent=x.classification+' · '+x.phase.toUpperCase();
   $('lesson-title').textContent=x.title;$('lesson-summary').textContent=x.summary;
   $('experience-label').textContent='학습 방식 · '+(x.experience||'guide');
   $('updated').textContent='확인 '+x.updated.replaceAll('-','.');
-  questions(x);document.title=x.title+' | 우리집 금융공부';$('article').innerHTML=x.body;
+  questions(x);document.title=x.title+' | 절세계좌 교과서';$('article').innerHTML=x.body;
   $('toc').replaceChildren();
   $('article').querySelectorAll('h2').forEach(h=>{
     const a=document.createElement('a');a.href='#'+x.id+'/'+h.id;a.textContent=h.textContent;
@@ -84,7 +84,7 @@ function updateReadingProgress(){
   $('reading-progress').style.width=(den>0?Math.min(100,h.scrollTop/den*100):0)+'%';
 }
 document.querySelector('.skip').onclick=e=>{e.preventDefault();$('main').focus();$('main').scrollIntoView();};
-$('complete').onchange=()=>{completed[current.id]=$('complete').checked;try{localStorage.setItem('finance-study-v2',JSON.stringify(completed));}catch{}nav();};
+$('complete').onchange=()=>{completed[current.id]=$('complete').checked;try{localStorage.setItem('tax-account-guide-v1',JSON.stringify(completed));}catch{}nav();};
 $('search').oninput=nav;$('print').onclick=()=>window.print();
 $('menu').onclick=()=>{const open=!$('sidebar').classList.contains('open');$('sidebar').classList.toggle('open',open);$('scrim').hidden=!open;$('menu').setAttribute('aria-expanded',String(open));document.body.classList.toggle('menu-open',open);if(open)$('search').focus();};
 $('scrim').onclick=closeMenu;

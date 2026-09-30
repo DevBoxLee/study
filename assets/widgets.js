@@ -120,27 +120,38 @@ function pensionWithdrawal(root){
 }
 function accountQuiz(root){
   const qs=[
-    ['연금저축에 돈만 넣으면 알아서 투자된다.','X','입금과 투자상품 매수는 별개입니다.'],
-    ['IRP와 연금저축은 사실상 같은 계좌다.','X','IRP는 퇴직금 기능·중도인출 법정사유·위험자산 한도가 있습니다.'],
-    ['ISA도 납입액 세액공제를 받는다.','X','ISA는 손익통산·비과세·초과분 저율과세가 핵심입니다.'],
-    ['연금저축은 55세 전에 절대 꺼낼 수 없다.','X','중도인출은 가능하지만 재원별 과세를 확인해야 합니다.'],
-    ['55세가 되면 연금계좌를 전액 인출해야 한다.','X','55세는 개시 가능연령의 기본축이며 분할수령을 설계합니다.'],
-    ['연금저축 600만원이면 세금 600만원을 돌려받는다.','X','600만원은 공제대상 납입액 한도입니다.'],
-    ['IRP에서 위험자산을 일반적으로 100% 담을 수 있다.','X','일반적으로 위험자산 70% 한도가 적용됩니다.'],
-    ['ISA에서 VOO·QQQ를 직접 살 수 있다.','X','해외상장 ETF 직접매수는 불가합니다.'],
-    ['ISA에서 손실이면 절세혜택이 항상 생긴다.','X','줄일 과세대상 순소득이 없으면 비과세·저율과세 체감도 작습니다.'],
-    ['ISA는 3년간 한 푼도 뺄 수 없다.','X','납입원금 범위의 중도인출이 가능합니다.'],
-    ['ISA 중도인출액만큼 납입한도가 복원된다.','X','인출만으로 사용한 납입한도가 복원되지 않습니다.'],
-    ['연금계좌는 세액공제한도까지만 납입할 수 있다.','X','일반 개인 납입한도와 공제한도는 다릅니다.'],
-    ['공제 안 받은 연금저축 원금도 무조건 16.5%다.','X','공제를 받지 않았음이 확인된 원금은 과세제외될 수 있습니다.'],
-    ['부부라면 한 사람에게 연금을 몰아주는 것이 항상 유리하다.','X','공제율·결정세액·현금흐름을 개인별로 계산합니다.'],
-    ['연금계좌는 세금이 전혀 없는 계좌다.','X','핵심은 면세보다 과세이연입니다.'],
-    ['ISA 3년이 지나면 무조건 계좌를 닫아야 한다.','X','만기·연장·해지·재가입·연금전환을 자금계획과 함께 비교합니다.']
+    ['연금저축에 돈만 넣으면 알아서 투자된다.','입금과 투자는 별개입니다. 연금저축펀드라면 ETF·펀드 등을 직접 선택하거나 자동매수 기능을 설정해야 실제 투자가 시작됩니다.','연금저축은 ‘계좌’라는 그릇이지 자동투자 상품 자체가 아니기 때문입니다.'],
+    ['IRP와 연금저축은 사실상 같은 계좌다.','둘 다 세법상 연금계좌지만 IRP는 퇴직금 수령 기능, 법정 중도인출 제한, 위험자산 70% 한도 등 제약이 더 큽니다.','IRP는 노후자금 보호와 퇴직급여 관리 기능까지 함께 맡기 때문입니다.'],
+    ['ISA도 납입액에 대해 연말정산 세액공제를 받는다.','현행 ISA는 납입액 세액공제 계좌가 아닙니다. 손익통산, 비과세, 초과분 저율 분리과세가 핵심입니다.','연금계좌와 ISA는 세제혜택이 발생하는 ‘단계’가 다릅니다.'],
+    ['연금저축에 넣으면 55세 전에는 절대 돈을 꺼낼 수 없다.','연금저축은 중도인출이 가능하지만 세액공제 받은 원금과 운용수익에는 연금외수령 과세가 발생할 수 있습니다.','인출 가능 여부와 세금상 유리한 인출은 다른 문제입니다.'],
+    ['55세가 되면 연금저축·IRP를 무조건 전액 인출해야 한다.','55세는 연금개시가 가능한 나이일 뿐입니다. 연금수령한도와 수령기간을 설계해 나눠 받을 수 있습니다.','연금계좌는 ‘받는 방식’에 따라 세금이 달라집니다.'],
+    ['연금저축 세액공제 한도 600만원이면 세금 600만원을 돌려받는다.','600만원은 세액공제 ‘대상 납입액’ 한도입니다. 여기에 소득세 공제율 12% 또는 15%를 적용합니다.','세액공제 대상 금액과 실제 세금 감소액을 구분해야 합니다.'],
+    ['IRP에서는 주식형 ETF를 100% 담을 수 있다.','일반적으로 위험자산은 전체 적립금의 70%까지입니다. 적격 TDF 등 일부 예외 운용방법은 70% 한도에서 제외될 수 있습니다.','퇴직연금은 노후자산 보호를 위해 위험자산 한도를 둡니다.'],
+    ['ISA에서 VOO·QQQ를 직접 매수할 수 있다.','해외 거래소 상장 주식·ETF 직접매수는 불가합니다. 대신 국내 상장 S&P500·나스닥100 추종 ETF를 활용할 수 있습니다.','ISA 투자대상은 법률상 국내 금융상품 범위로 제한됩니다.'],
+    ['ISA에서 손실이 나도 세금 혜택을 무조건 받는다.','줄일 과세소득이 없다면 비과세·저율과세 혜택의 체감도 없습니다.','절세는 발생한 과세대상 소득이 있을 때 의미가 있습니다.'],
+    ['ISA는 3년 동안 한 푼도 뺄 수 없다.','납입원금 범위에서 중도인출이 가능합니다.','‘3년 의무가입기간’과 ‘중도인출 가능 여부’는 별개의 개념입니다.'],
+    ['ISA에서 돈을 빼면 그 금액만큼 납입한도가 다시 생긴다.','중도인출 금액만큼 납입한도는 복원되지 않습니다.','인출은 과거 납입실적을 지우지 않습니다.'],
+    ['연금저축·IRP는 세액공제 한도까지만 돈을 넣을 수 있다.','일반 개인 납입한도는 연금계좌 합계 연 1,800만원이고, 세액공제 대상은 별도의 600/900만원 구조입니다.','납입한도와 세액공제한도는 서로 다른 제도입니다.'],
+    ['세액공제를 안 받은 연금저축 원금도 중도인출하면 무조건 16.5% 세금이다.','세액공제를 받지 않았음이 확인된 과세제외 원금은 인출순서상 먼저 빠져나가며 과세제외될 수 있습니다.','국세청은 연금계좌 재원을 과세제외금액 → 이연퇴직소득 → 과세금액 순으로 구분합니다.'],
+    ['부부라면 한 사람에게 연금계좌 납입을 몰아주는 것이 항상 유리하다.','각자의 공제율, 결정세액, 기존 공제, 현금흐름을 따로 계산해야 합니다.','연금계좌 세액공제는 부부 합산이 아니라 개인별 과세입니다.'],
+    ['연금계좌는 세금이 전혀 없는 계좌다.','핵심은 면세가 아니라 과세이연입니다. 세액공제 받은 원금과 운용수익은 연금수령 시 과세됩니다.','‘언제 내느냐’가 바뀌고, 조건을 지키면 세율도 낮아질 수 있습니다.'],
+    ['ISA 3년이 지나면 무조건 계좌를 닫아야 한다.','3년은 세제특례를 위한 핵심 최소 계약기간입니다. 실제 만기·연장·해지·재가입은 금융회사 계약과 자금계획을 함께 봅니다.','계약기간과 자금사용 계획이 다를 수 있기 때문입니다.']
   ];
-  root.innerHTML=intro('첨부 교과서의 O/X 16문항','틀리기 쉬운 문장만 눌러 이유를 확인합니다.')+qs.map(q=>'<div class="quiz"><button type="button" aria-expanded="false"><span>'+q[1]+'</span><b>'+q[0]+'</b></button><p hidden>'+q[2]+'</p></div>').join('');
-  root.querySelectorAll('.quiz button').forEach(b=>b.onclick=()=>{const p=b.nextElementSibling,open=b.getAttribute('aria-expanded')==='true';b.setAttribute('aria-expanded',String(!open));p.hidden=open;});
+  root.innerHTML=intro('원본 O/X 16문항','각 문항을 “실제 구조”와 “왜 그런가” 두 단계로 확인합니다.')+
+    qs.map(q=>'<div class="quiz"><button type="button" aria-expanded="false"><span>X</span><b>'+q[0]+'</b></button><div class="quiz-detail" hidden><p><strong>✅ 실제</strong> '+q[1]+'</p><p><strong>💡 왜 그런가</strong> '+q[2]+'</p></div></div>').join('');
+  root.querySelectorAll('.quiz button').forEach(b=>b.onclick=()=>{const d=b.nextElementSibling,open=b.getAttribute('aria-expanded')==='true';b.setAttribute('aria-expanded',String(!open));d.hidden=open;});
 }
 
+function taxCompoundCompare(root){
+  const rows=[
+    {y:10,defer:1967,annual:1778,isa:1891,pension:1914},
+    {y:20,defer:3870,annual:3160,isa:3605,pension:3712},
+    {y:30,defer:7612,annual:5618,isa:6977,pension:7249}
+  ];
+  root.innerHTML=intro('과세이연의 힘','원금 1,000만원 · 연 7% · 원본 index.html의 10/20/30년 교육용 단순모형')+
+    '<div class="tax-compare-grid">'+rows.map(r=>'<section><small>'+r.y+'년</small><div>'+bar('과세이연',money(r.defer),r.defer/80) + bar('매년 15.4%',money(r.annual),r.annual/80,'red') + bar('ISA 일반형',money(r.isa),r.isa/80) + bar('연금 5.5%',money(r.pension),r.pension/80)+'</div></section>').join('')+'</div>'+
+    '<p class="caption">ISA·연금 수치는 원본의 단순 세후 가정이며 실제 상품별 과세와 수익률을 보장하지 않습니다.</p>';
+}
 function policyDashboard(root){
   root.innerHTML=intro('공부의 마지막은 한 장의 운영규칙입니다','아래는 교육용 기준안입니다. 실제 부부 숫자로 바꾸기 전까지는 실행 권고가 아닙니다.')+
   '<div class="policy-grid"><div><small>장기 투자금</small><b>6,000만원</b></div><div><small>목표 비중</small><b>주식 80 : 안정 20</b></div><div><small>월 적립</small><b>150만원</b></div><div><small>점검</small><b>반기 · ±5%p</b></div></div>'+
@@ -149,7 +160,26 @@ function policyDashboard(root){
   bind(root,()=>{const s=num(root,'stockValue'),a=num(root,'safeValue'),total=s+a,ratio=total?s/total*100:0,shift=s-total*.8;root.querySelector('[data-rebalance]').textContent=total===0?'평가액이 0원입니다.':('현재 주식 '+ratio.toFixed(1)+'% · 목표와 '+(ratio-80).toFixed(1)+'%p 차이. '+(Math.abs(ratio-80)>=5?'조정 검토 대상입니다.':'교육용 기준 범위 안입니다.')+' 80:20을 맞추려면 주식 '+(shift>=0?'감축 ':'증액 ')+money(Math.abs(shift))+' 수준입니다. 실제로는 새 납입을 먼저 활용합니다.');});
 }
 function isa(root){root.innerHTML=intro('ISA 과세대상 순이익 정산','세법상 손익통산을 마친 과세대상 순이익이라는 단순 가정입니다.')+'<div class="inputs">'+input('profit','과세대상 순이익 (만원)',500,-10000,1000000)+'<label>가입유형<select name="allowance"><option value="200">일반형 · 200만원</option><option value="400">서민·농어민형 · 400만원</option></select></label></div><div data-output role="status"></div>';bind(root,()=>{const p=num(root,'profit'),a=num(root,'allowance'),tax=m.isaTax(p,a);root.querySelector('[data-output]').innerHTML='<div class="result-grid">'+card('비과세 적용',money(Math.min(a,Math.max(p,0))))+card('과세할 순이익',money(Math.max(0,p-a)))+card('계산상 세금',tax.toLocaleString('ko-KR')+'만원','지방소득세 포함 9.9%')+'</div>';});}
-function pension(root){root.innerHTML=intro('연금계좌 공제 대상과 혜택','근로소득만 있는 1인 사례 · 납부할 세금이 충분하다는 가정')+'<div class="inputs">'+input('salary','본인 총급여 (만원)',5000,0,1000000)+input('pension','연금저축 연 납입 (만원)',600,0,1800)+input('irp','IRP 등 개인 추가납입 (만원)',300,0,1800)+'</div><div data-output role="status"></div>';bind(root,()=>{const s=num(root,'salary'),p=num(root,'pension'),i=num(root,'irp');if(p+i>1800){root.querySelector('[data-output]').innerHTML='<p class="widget-error">기본 연간 개인 납입한도 1,800만원을 초과했습니다.</p>';return;}const base=Math.min(900,Math.min(p,600)+i);root.querySelector('[data-output]').innerHTML='<div class="result-grid">'+card('공제 대상 납입금',money(base))+card('공제율',s<=5500?'16.5%':'13.2%','지방소득세 포함')+card('계산상 최대 혜택',m.pensionCredit(p,i,s).toLocaleString('ko-KR')+'만원')+'</div>';});}
+function pension(root){
+  root.innerHTML=intro('인터랙티브 계산기 · 연금계좌 세액공제','원본 index.html의 계산항목을 그대로 반영합니다.')+
+  '<div class="inputs">'+
+  input('pension','연금저축 납입액 (만원)',600,0,1800)+
+  input('irp','IRP 개인납입액 (만원)',300,0,1800)+
+  '<label>공제율 구간<select name="pensionRate"><option value="0.165">총급여 5,500만원 이하 등 · 체감 16.5%</option><option value="0.132">그 초과 · 체감 13.2%</option></select></label>'+
+  input('taxLeft','공제 전 남은 세액 (만원)',200,0,1000000)+
+  '</div><div data-output role="status"></div>'+
+  '<p class="caption">실제 연말정산은 다른 세액공제, 원천징수액, 지방소득세 정산에 따라 달라집니다. 법률상 소득세 공제율은 15% 또는 12%입니다.</p>';
+  bind(root,()=>{
+    const p=num(root,'pension'),i=num(root,'irp'),rate=num(root,'pensionRate'),taxLeft=num(root,'taxLeft');
+    if(p+i>1800){root.querySelector('[data-output]').innerHTML='<p class="widget-error">기본 연간 개인 납입한도 1,800만원을 초과했습니다.</p>';return;}
+    const base=Math.min(900,Math.min(p,600)+i),gross=base*rate,usable=Math.min(gross,taxLeft);
+    root.querySelector('[data-output]').innerHTML='<div class="result-grid">'+
+      card('공제 대상 납입금',money(base))+
+      card('계산상 공제효과',money(gross),'공제율 '+(rate*100).toFixed(1)+'% 체감 예시')+
+      card('남은 세액 반영 후',money(usable),'공제 전 남은 세액 범위 안')+
+    '</div>';
+  });
+}
 function irp(root){root.innerHTML=intro('IRP 위험자산 한도를 실제 잔액으로 확인','1인 계좌의 단순 교육용 모형입니다.')+'<div class="inputs">'+input('irpStock','현재 위험자산 (만원)',77,0,1000000)+input('irpSafe','현재 적격 안정자산 (만원)',30,0,1000000)+input('irpMonthly','이번 추가 납입 (만원)',25,0,1000)+'</div><div class="result-grid" role="status" data-allowance></div>';bind(root,()=>{const s=num(root,'irpStock'),a=num(root,'irpSafe'),cash=num(root,'irpMonthly'),v=m.irpPurchase(s,a,cash);root.querySelector('[data-allowance]').innerHTML=card('위험자산 추가매수',v.stock.toFixed(1)+'만원')+card('적격 안정자산',v.safe.toFixed(1)+'만원')+card('추가 후 위험비중',((s+a+cash)?(s+v.stock)/(s+a+cash)*100:0).toFixed(1)+'%');});}
 function taxLocation(root){root.innerHTML=intro('같은 미국 주식 노출, 다른 투자 경로','상장 장소·계좌·상품구조가 과세를 바꿉니다.')+'<div class="route-grid"><div class="route-card"><small>경로 A</small><strong>일반계좌 → 미국 상장 ETF</strong><p>해외주식 과세체계와 배당 과세를 확인합니다.</p></div><div class="route-card"><small>경로 B</small><strong>ISA → 국내 상장 해외지수 ETF</strong><p>ISA의 계좌 과세체계와 상품구조를 함께 봅니다.</p></div></div>';}
 function filter(root){root.innerHTML=intro('새 주제를 30초 안에 분류','투자결정·세금·비용·위험·계좌 선택을 바꾸지 않는다면 뒤로 미룹니다.')+'<div class="rule-grid"><section><b>결정에 영향?</b><p>자산배분·계좌·상품을 바꾸나?</p></section><section><b>비용·위험 감소?</b><p>세금이나 손실구조가 달라지나?</p></section><section><b>지금 필요한가?</b><p>곧 실행할 거래가 있나?</p></section></div>';}
@@ -159,6 +189,6 @@ function allocation(root){allocationLab(root);}
 function etf(root){etfAnatomy(root);}
 function accounts(root){accountMap(root);}
 function policy(root){policyDashboard(root);}
-const renderers={roadmap,'money-story':moneyStory,'horizon-timeline':horizonTimeline,compound,'risk-lab':riskLab,'allocation-lab':allocationLab,'etf-anatomy':etfAnatomy,'account-map':accountMap,'account-quiz':accountQuiz,'tax-basics':taxBasics,'isa-bridge':isaBridge,'account-priority':accountPriority,'early-withdrawal':earlyWithdrawal,'pension-withdrawal':pensionWithdrawal,'policy-dashboard':policyDashboard,buckets,drawdown,allocation,etf,accounts,isa,pension,irp,'tax-location':taxLocation,policy,filter};
+const renderers={roadmap,'money-story':moneyStory,'horizon-timeline':horizonTimeline,compound,'risk-lab':riskLab,'allocation-lab':allocationLab,'etf-anatomy':etfAnatomy,'account-map':accountMap,'account-quiz':accountQuiz,'tax-basics':taxBasics,'isa-bridge':isaBridge,'account-priority':accountPriority,'early-withdrawal':earlyWithdrawal,'pension-withdrawal':pensionWithdrawal,'tax-compound-compare':taxCompoundCompare,'policy-dashboard':policyDashboard,buckets,drawdown,allocation,etf,accounts,isa,pension,irp,'tax-location':taxLocation,policy,filter};
 return {hydrate(article){article.querySelectorAll('[data-widget]').forEach(root=>{const render=renderers[root.dataset.widget];if(render)render(root);});}};
 })();

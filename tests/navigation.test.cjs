@@ -1,2 +1,6 @@
-const {test}=require('node:test');const assert=require('node:assert/strict');let c;try{c=require('../assets/catalog.js')}catch{c={}};
-test('계좌 허브 다음은 상세학습이고 마지막 상세 다음은 투자 운영규칙',()=>{assert.equal(typeof c.sequence,'function');const pages=[{id:'00',parent:''},{id:'06',parent:''},{id:'isa',parent:'06'},{id:'pension',parent:'06'},{id:'irp',parent:'06'},{id:'general',parent:'06'},{id:'faq',parent:'06'},{id:'07',parent:''}];assert.deepEqual(c.sequence(pages).map(x=>x.id),['00','06','isa','pension','irp','general','faq','07']);});
+const {test}=require('node:test');const assert=require('node:assert/strict');const c=require('../assets/catalog.js');
+test('19개 절세계좌 섹션은 번호순으로 이동한다',()=>{
+ const names=['overview','tax','pension','irp','isa','compare','compound','bridge','purpose','priority','couple','portfolio','mistakes','early','withdraw','faq','summary','onepage','sources'];
+ const pages=names.map((name,i)=>({id:String(i+1).padStart(2,'0')+'-'+name,parent:''}));
+ assert.deepEqual(c.sequence(pages).map(x=>x.id),pages.map(x=>x.id));
+});

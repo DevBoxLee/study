@@ -5,11 +5,18 @@ import re
 def inline(text):
     parts=[]
     last=0
-    for m in re.finditer(r"\[([^\]]+)\]\((https?://[^)]+|#[a-z0-9-]+)\)",text):
+    pattern=r"\[([^\]]+)\]\((https?://[^)]+|#[a-z0-9-]+)\)|<(https?://[^>]+)>"
+    for m in re.finditer(pattern,text):
         parts.append(html.escape(text[last:m.start()],quote=False))
-        url=html.escape(m.group(2),quote=True)
-        extra=' target="_blank" rel="noopener noreferrer"' if url.startswith('http') else ''
-        parts.append(f'<a href="{url}"{extra}>{html.escape(m.group(1))}</a>')
+        if m.group(3):
+            raw_url=m.group(3)
+            label=raw_url
+        else:
+            raw_url=m.group(2)
+            label=m.group(1)
+        url=html.escape(raw_url,quote=True)
+        extra=' target="_blank" rel="noopener noreferrer"' if raw_url.startswith('http') else ''
+        parts.append(f'<a href="{url}"{extra}>{html.escape(label)}</a>')
         last=m.end()
     parts.append(html.escape(text[last:],quote=False))
     text=''.join(parts)

@@ -16,3 +16,10 @@ body[data-experience="scenario"] .lesson-hero{background:linear-gradient(135deg,
 .rate-ladder{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:18px 0}.rate-ladder>div{border:1px solid var(--line);border-radius:13px;text-align:center;padding:16px;background:var(--teal-soft)}.rate-ladder.pension-years>div{background:var(--amber-soft)}.rate-ladder small,.rate-ladder b,.rate-ladder strong{display:block}.rate-ladder small{font-size:9px;color:var(--muted)}.rate-ladder strong{font-size:25px;color:var(--teal);margin-top:5px}.rate-ladder.pension-years strong{color:var(--amber)}
 @media(max-width:900px){.concept-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:600px){.concept-grid,.split-scenario,.rate-ladder{grid-template-columns:1fr}}
+
+.tax-compare-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:18px 0}.tax-compare-grid section{border:1px solid var(--line);border-radius:14px;padding:16px;background:#fff}.tax-compare-grid section>small{display:block;font-weight:900;color:var(--blue);margin-bottom:12px}.tax-compare-grid .mini-bars{gap:10px}.quiz-detail{padding:0 16px 15px 48px}.quiz-detail p{margin:8px 0!important;padding:0!important}.quiz-detail strong{display:inline;color:var(--ink)}
+body[data-experience="reference"] .lesson-hero,body[data-experience="summary"] .lesson-hero{background:linear-gradient(135deg,#fff,#f3f6fa)}
+@media(max-width:900px){.tax-compare-grid{grid-template-columns:1fr}}
+
+/* Long official-source URLs must wrap on narrow screens. */
+.prose a{overflow-wrap:anywhere;word-break:break-word}

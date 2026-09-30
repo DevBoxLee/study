@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build the finance study site from flexible lesson blocks."""
+"""Build the tax-account study site from flexible lesson blocks."""
 from pathlib import Path
 import json,re,shutil
 from markdown import markdown_to_html
@@ -7,7 +7,8 @@ from markdown import markdown_to_html
 ROOT=Path(__file__).resolve().parents[1]
 WIDGETS={
     'roadmap','money-story','horizon-timeline','compound','risk-lab','allocation-lab',
-    'etf-anatomy','account-map','account-quiz','tax-basics','isa-bridge','account-priority','early-withdrawal','pension-withdrawal','policy-dashboard',
+    'etf-anatomy','account-map','account-quiz','tax-basics','isa-bridge','account-priority',
+    'early-withdrawal','pension-withdrawal','tax-compound-compare','policy-dashboard',
     'buckets','drawdown','allocation','etf','accounts','isa','pension','irp',
     'tax-location','policy','filter'
 }
@@ -57,10 +58,13 @@ def load_lessons():
             raise ValueError('Invalid id')
         if not re.fullmatch(r'\d{4}-\d{2}-\d{2}',meta['updated']):
             raise ValueError('Invalid date')
-        if len(body.strip()) < 180:
+        has_widget=bool(re.search(r'^:::[a-z-]+[ \t]*$',body,flags=re.M))
+        if len(body.strip()) < 180 and not has_widget:
             raise ValueError(f'Lesson too short: {path}')
-        if meta['classification']=='필수' and not re.search(r'\]\(https://',body):
-            raise ValueError(f'Missing official source link: {path}')
+        has_direct_source=bool(re.search(r'https://',body))
+        has_shared_source=meta.get('sources')=='19-sources'
+        if meta['classification']=='필수' and not has_direct_source and not has_shared_source:
+            raise ValueError(f'Missing official source link or shared source page: {path}')
         meta.update(
             body=render_lesson(body),
             search=body,
