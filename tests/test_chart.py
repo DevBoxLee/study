@@ -13,6 +13,15 @@ SUPPORT = (ROOT/'src'/'chart'/'beginner'/'support-resistance.html').read_text(en
 MA = (ROOT/'src'/'chart'/'beginner'/'moving-average.html').read_text(encoding='utf-8')
 PRACTICE = (ROOT/'src'/'chart'/'beginner'/'beginner-practice.html').read_text(encoding='utf-8')
 BEGINNER_LAB = (ROOT/'src'/'chart'/'assets'/'beginner-lab.js').read_text(encoding='utf-8')
+LEVEL_LAB = (ROOT/'src'/'chart'/'assets'/'level-lab.js').read_text(encoding='utf-8')
+INTERMEDIATE = {
+    p.name: p.read_text(encoding='utf-8')
+    for p in sorted((ROOT/'src'/'chart'/'intermediate').glob('*.html'))
+}
+ADVANCED = {
+    p.name: p.read_text(encoding='utf-8')
+    for p in sorted((ROOT/'src'/'chart'/'advanced').glob('*.html'))
+}
 
 class ChartLearningTest(unittest.TestCase):
     def test_hub_has_three_learning_levels_and_lab(self):
@@ -46,6 +55,29 @@ class ChartLearningTest(unittest.TestCase):
         for needle in ['drawMA','drawLab','미래 구간','labScenarios']:
             self.assertIn(needle, BEGINNER_LAB)
         combined = HUB + CANDLE + VOLUME + TREND + SUPPORT + MA + PRACTICE
+        for forbidden in ['와이프','남편','아내']:
+            self.assertNotIn(forbidden, combined)
+
+    def test_intermediate_curriculum_is_complete(self):
+        self.assertEqual(len(INTERMEDIATE), 6)
+        combined = '\n'.join(INTERMEDIATE.values())
+        for needle in ['시장구조와 추세전환','돌파와 이탈','눌림목과 되돌림','거래량 검증','패턴 · RSI · MACD','분할매수 · 분할매도']:
+            self.assertIn(needle, combined)
+        for needle in ['구조 변화 후보','가짜 돌파','눌림 실패','다이버전스','물타기']:
+            self.assertIn(needle, combined)
+
+    def test_advanced_curriculum_is_complete(self):
+        self.assertEqual(len(ADVANCED), 6)
+        combined = '\n'.join(ADVANCED.values())
+        for needle in ['멀티 타임프레임','실패 신호','변동성 · ATR','손절 · Risk/Reward','포지션 사이징','스윙 · 매매 복기']:
+            self.assertIn(needle, combined)
+        for needle in ['시간축 쇼핑','Bull Trap','ATR 기반 손절','기대값','1회 위험예산','과정 점수']:
+            self.assertIn(needle, combined)
+        for needle in ['initScenario','initAtr','initRR','initPosition','initMTF','initReview']:
+            self.assertIn(needle, LEVEL_LAB)
+
+    def test_all_chart_copy_uses_neutral_learner_language(self):
+        combined = HUB + CANDLE + VOLUME + TREND + SUPPORT + MA + PRACTICE + '\n'.join(INTERMEDIATE.values()) + '\n'.join(ADVANCED.values())
         for forbidden in ['와이프','남편','아내']:
             self.assertNotIn(forbidden, combined)
 
