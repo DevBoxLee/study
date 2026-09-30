@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="ko">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>추세와 고점·저점 — 우리집 차트 공부</title>
+<link rel="stylesheet" href="../assets/chart.css"><script src="../assets/foundations.js" defer></script></head>
+<body>
+<div class="progress"><span id="progressBar"></span></div>
+<div class="layout">
+<aside class="sidebar">
+<a class="back-home" href="../../index.html">← 우리집 금융공부로 돌아가기</a>
+<div class="brand"><small>PRICE ACTION LAB</small>차트 공부</div>
+<div class="side-copy">추세는 이동평균선보다 먼저 가격 자체의 고점·저점 구조로 읽습니다.</div>
+<nav>
+<details class="nav-group"><summary>00. 시작하기 <span>2</span></summary><div class="nav-items"><a class="nav-link" href="../index.html">학습 로드맵</a><span class="nav-disabled">차트의 역할</span></div></details>
+<details class="nav-group" open><summary>01. 초급 · 읽는다 <span>7</span></summary><div class="nav-items"><span class="nav-disabled">01 차트의 기본 구조</span><a class="nav-link" href="candlestick.html">02 캔들 이해</a><a class="nav-link" href="volume.html">03 거래량 이해</a><a class="nav-link active" href="trend-structure.html">04 추세와 고점·저점</a><a class="nav-link" href="support-resistance.html">05 지지와 저항</a><span class="nav-disabled">06 이동평균선</span><span class="nav-disabled">07 초급 실전</span></div></details>
+<details class="nav-group"><summary>02. 중급 · 판단한다 <span>9</span></summary><div class="nav-items"><span class="nav-disabled">시장구조 · 돌파 · 눌림목</span><span class="nav-disabled">차트 패턴 · RSI/MACD</span><span class="nav-disabled">매수 · 매도 판단</span></div></details>
+<details class="nav-group"><summary>03. 고급 · 전략을 만든다 <span>9</span></summary><div class="nav-items"><span class="nav-disabled">멀티 타임프레임</span><span class="nav-disabled">리스크 · 포지션 사이징</span><span class="nav-disabled">스윙 · 복기</span></div></details>
+</nav>
+<div class="nav-kicker"><b>이 페이지 목표</b><br>상승·하락·횡보를 느낌이 아니라 고점과 저점의 이동으로 설명합니다.</div>
+</aside>
+<main>
+<header class="hero"><div class="hero-grid"><div><div class="eyebrow">BEGINNER 04 · TREND STRUCTURE</div><h1>추세는 선이 아니라<br><span style="color:#2563eb">고점과 저점의 이동</span>이다.</h1><p class="lead">가격이 며칠 올랐다는 것과 상승 추세는 다릅니다. 고점과 저점이 어느 방향으로 이동하는지를 보면 추세를 훨씬 덜 주관적으로 읽을 수 있습니다.</p><div class="badge-row"><span class="badge green">필수</span><span class="badge blue">HH · HL · LH · LL</span><span class="badge amber">이동평균선 전 단계</span></div></div><div class="hero-card"><div class="metric"><span>상승 추세</span><b>HH + HL</b></div><div class="metric"><span>하락 추세</span><b>LH + LL</b></div><div class="metric"><span>횡보</span><b>범위 유지</b></div><div class="metric"><span>핵심</span><b>구조 변화 확인</b></div></div></div></header>
+
+<section class="section" id="basic"><div class="eyebrow">01 · SWING POINTS</div><h2>고점과 저점을 먼저 표시한다</h2><p class="section-lead">모든 작은 흔들림을 표시할 필요는 없습니다. 눈에 띄는 방향 전환 지점을 기준으로 구조를 단순화합니다.</p>
+<div class="grid2"><div class="card"><h3>고점 · Swing High</h3><p>상승하다가 방향을 바꾸며 내려오기 시작한 눈에 띄는 꼭짓점입니다.</p><div class="sequence"><span class="seq">상승</span><span>→</span><span class="seq">고점</span><span>→</span><span class="seq low">하락</span></div></div><div class="card"><h3>저점 · Swing Low</h3><p>하락하다가 방향을 바꾸며 올라가기 시작한 눈에 띄는 바닥점입니다.</p><div class="sequence"><span class="seq low">하락</span><span>→</span><span class="seq low">저점</span><span>→</span><span class="seq">상승</span></div></div></div>
+<div class="callout"><b>중요:</b> 고점·저점은 캔들 하나의 고가·저가와 다릅니다. 여러 캔들이 만든 <b>의미 있는 방향 전환점</b>을 말합니다.</div></section>
+
+<section class="section" id="interactive"><div class="eyebrow">02 · INTERACTIVE STRUCTURE</div><h2>상승·하락·횡보 구조를 직접 비교</h2>
+<div class="scene-shell"><div class="scene-toolbar"><div><b>시장 구조 시뮬레이션</b><div class="micro">HH: Higher High · HL: Higher Low · LH: Lower High · LL: Lower Low</div></div><div class="scenario-row"><button class="scenario-btn active" data-trend="up">상승 추세</button><button class="scenario-btn" data-trend="down">하락 추세</button><button class="scenario-btn" data-trend="range">횡보</button></div></div><div class="scene-stage" id="trendScene"></div><div class="scene-caption"><strong id="trendTitle"></strong><p id="trendText"></p><div class="structure-legend"><span><i class="dot high"></i>고점 계열</span><span><i class="dot low"></i>저점 계열</span></div></div></div></section>
+
+<section class="section" id="three"><div class="eyebrow">03 · THREE STATES</div><h2>차트는 우선 세 상태 중 하나로 본다</h2>
+<div class="structure-grid">
+<div class="structure-card"><h3>상승 추세</h3><div class="sequence"><span class="seq">HH</span><span>+</span><span class="seq low">HL</span></div><p class="micro">고점도 높아지고 저점도 높아집니다. 조정이 있어도 이전 주요 저점을 지키는지가 중요합니다.</p></div>
+<div class="structure-card"><h3>하락 추세</h3><div class="sequence"><span class="seq">LH</span><span>+</span><span class="seq low">LL</span></div><p class="micro">고점도 낮아지고 저점도 낮아집니다. 반등이 나와도 이전 고점을 넘지 못하면 구조가 유지될 수 있습니다.</p></div>
+<div class="structure-card"><h3>횡보</h3><div class="sequence"><span class="seq">비슷한 상단</span><span>↔</span><span class="seq low">비슷한 하단</span></div><p class="micro">고점과 저점이 한 방향으로 이동하지 않습니다. 범위 중간보다 상단·하단 반응이 중요합니다.</p></div>
+</div></section>
+
+<section class="section" id="change"><div class="eyebrow">04 · STRUCTURE CHANGE</div><h2>추세 전환은 한 캔들보다 구조가 깨질 때 본다</h2>
+<div class="grid2"><div class="card"><h3>상승 추세에서 경계할 변화</h3><div class="step-flow"><div class="step-node">HH</div><div class="step-arrow">→</div><div class="step-node">HL</div><div class="step-arrow">→</div><div class="step-node">고점 실패</div><div class="step-arrow">→</div><div class="step-node">주요 저점 이탈</div></div><p class="micro">단 한 번의 음봉보다 고점 갱신 실패와 저점 이탈이 함께 나타나는지 봅니다.</p></div>
+<div class="card"><h3>하락 추세에서 경계할 변화</h3><div class="step-flow"><div class="step-node">LL</div><div class="step-arrow">→</div><div class="step-node">LH</div><div class="step-arrow">→</div><div class="step-node">저점 실패</div><div class="step-arrow">→</div><div class="step-node">주요 고점 돌파</div></div><p class="micro">한 번의 양봉보다 낮아지던 고점 구조가 깨지는지가 더 중요합니다.</p></div></div>
+<div class="callout warn"><b>주의:</b> 주요 저점 1회 이탈 = 무조건 하락 전환으로 고정하지 않습니다. 시간축, 종가 기준 유지, 거래량, 다음 반응을 함께 봅니다.</div></section>
+
+<section class="section" id="timeframe"><div class="eyebrow">05 · TIMEFRAME</div><h2>같은 종목도 시간축에 따라 추세가 다를 수 있다</h2>
+<div style="overflow:auto"><table class="compare-table"><thead><tr><th>시간축</th><th>가능한 상태</th><th>의미</th></tr></thead><tbody><tr><td>주봉</td><td>상승 추세</td><td>장기 구조는 여전히 위쪽</td></tr><tr><td>일봉</td><td>조정 / 횡보</td><td>큰 상승 안에서 쉬어가는 구간일 수 있음</td></tr><tr><td>60분봉</td><td>하락 추세</td><td>단기적으로는 고점·저점이 낮아질 수 있음</td></tr></tbody></table></div>
+<div class="callout good"><b>실전 기준:</b> 투자 기간이 길다면 큰 시간축의 추세를 먼저 보고, 진입 타이밍을 더 작은 시간축에서 확인하는 방식으로 연결할 수 있습니다.</div></section>
+
+<section class="section" id="misread"><div class="eyebrow">06 · COMMON MISTAKES</div><h2>“오르고 있다”와 “상승 추세”를 구분한다</h2>
+<div class="misconception"><div class="wrong"><h3>✕ 감정으로 읽기</h3><p>“오늘 +5%니까 상승 추세다.”</p><p>“3일 내렸으니 하락 추세다.”</p><p>“이동평균선 위니까 무조건 상승이다.”</p></div><div class="vs">VS</div><div class="right"><h3>✓ 구조로 읽기</h3><p>“직전 고점을 넘었는가?”</p><p>“조정 저점이 이전보다 높아졌는가?”</p><p>“구조가 어느 시간축에서 유지되는가?”</p></div></div></section>
+
+<section class="section" id="quiz"><div class="eyebrow">07 · CHECK YOURSELF</div><h2>3분 확인 문제</h2>
+<div class="quiz" data-feedback="상승 추세의 기본 구조는 더 높은 고점(HH)과 더 높은 저점(HL)이 반복되는 것입니다."><div class="q">Q1. 상승 추세를 가장 잘 설명한 것은?</div><div class="options"><button class="option" data-correct="true">① 고점과 저점이 함께 높아진다</button><button class="option" data-correct="false">② 양봉이 3개 연속 나온다</button><button class="option" data-correct="false">③ 거래량이 항상 증가한다</button></div><div class="quiz-feedback"></div></div>
+<div class="quiz" data-feedback="한 번의 반등은 하락 구조 안에서도 자주 나옵니다. 이전 주요 고점을 넘는지까지 봐야 구조 변화 판단이 가능합니다."><div class="q">Q2. 하락 추세 중 큰 양봉이 한 번 나왔다. 가장 적절한 판단은?</div><div class="options"><button class="option" data-correct="false">① 상승 추세 전환 확정</button><button class="option" data-correct="true">② 이전 주요 고점을 넘는지 추가 확인</button></div><div class="quiz-feedback"></div></div>
+<div class="quiz" data-feedback="주봉·일봉·분봉은 서로 다른 구조를 가질 수 있습니다. 자신의 투자 기간과 맞는 큰 시간축을 먼저 봅니다."><div class="q">Q3. 일봉은 조정 중인데 주봉 상승 구조는 유지될 수 있을까?</div><div class="options"><button class="option" data-correct="true">① 가능하다</button><button class="option" data-correct="false">② 불가능하다</button></div><div class="quiz-feedback"></div></div></section>
+
+<section class="section" id="use"><div class="eyebrow">08 · USE IT</div><h2>진입 전에 먼저 구조부터 한 문장으로 말한다</h2>
+<div class="lesson-summary"><div class="summary-card"><b>상태</b><span class="micro">상승 · 하락 · 횡보 중 무엇인가?</span></div><div class="summary-card"><b>기준점</b><span class="micro">직전 주요 고점과 저점은 어디인가?</span></div><div class="summary-card"><b>변화</b><span class="micro">그 기준이 깨졌나, 유지됐나?</span></div></div>
+<div class="callout good"><b>실전 문장:</b> “일봉은 HH·HL 구조의 상승 추세다. 최근 조정이 직전 HL 위에서 멈췄고 거래량도 감소했다. 다음 상승 반응이 나오는지 확인한다.”</div></section>
+
+<section class="section"><div class="next-card"><div><div class="eyebrow">NEXT</div><h2 style="margin:4px 0 7px">다음은 지지와 저항</h2><p style="margin:0;color:#475467">추세 구조를 읽었다면 이제 가격이 반복해서 반응하는 <b>구간</b>을 찾습니다.</p></div><a href="support-resistance.html">지지·저항 시작 →</a></div></section>
+<footer class="footer">교육용 자료입니다. 특정 자산의 매수·매도를 권유하지 않습니다.</footer>
+</main></div></body></html>
