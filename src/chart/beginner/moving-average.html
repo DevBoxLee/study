@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="ko">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>이동평균선 이해 — 우리집 차트 공부</title>
+<link rel="stylesheet" href="../assets/chart.css"><script src="../assets/beginner-lab.js" defer></script></head>
+<body>
+<div class="progress"><span id="progressBar"></span></div>
+<div class="layout">
+<aside class="sidebar">
+<a class="back-home" href="../../index.html">← 우리집 금융공부로 돌아가기</a>
+<div class="brand"><small>PRICE ACTION LAB</small>차트 공부</div>
+<div class="side-copy">이동평균선은 미래를 맞히는 선이 아니라, 이미 지나온 가격의 평균을 부드럽게 보여주는 후행 도구입니다.</div>
+<nav>
+<details class="nav-group"><summary>00. 시작하기 <span>2</span></summary><div class="nav-items"><a class="nav-link" href="../index.html">학습 로드맵</a><span class="nav-disabled">차트의 역할</span></div></details>
+<details class="nav-group" open><summary>01. 초급 · 읽는다 <span>7</span></summary><div class="nav-items"><span class="nav-disabled">01 차트의 기본 구조</span><a class="nav-link" href="candlestick.html">02 캔들 이해</a><a class="nav-link" href="volume.html">03 거래량 이해</a><a class="nav-link" href="trend-structure.html">04 추세와 고점·저점</a><a class="nav-link" href="support-resistance.html">05 지지와 저항</a><a class="nav-link active" href="moving-average.html">06 이동평균선</a><a class="nav-link" href="beginner-practice.html">07 초급 실전</a></div></details>
+<details class="nav-group"><summary>02. 중급 · 판단한다 <span>9</span></summary><div class="nav-items"><span class="nav-disabled">시장구조 · 돌파 · 눌림목</span><span class="nav-disabled">차트 패턴 · RSI/MACD</span><span class="nav-disabled">매수 · 매도 판단</span></div></details>
+<details class="nav-group"><summary>03. 고급 · 전략을 만든다 <span>9</span></summary><div class="nav-items"><span class="nav-disabled">멀티 타임프레임</span><span class="nav-disabled">리스크 · 포지션 사이징</span><span class="nav-disabled">스윙 · 복기</span></div></details>
+</nav>
+<div class="nav-kicker"><b>이 페이지 목표</b><br>이동평균선을 지지·저항의 마법선처럼 보지 않고 평균·기울기·가격 위치로 해석합니다.</div>
+</aside>
+<main>
+<header class="hero"><div class="hero-grid"><div><div class="eyebrow">BEGINNER 06 · MOVING AVERAGE</div><h1>이동평균선은<br><span style="color:#2563eb">가격을 늦게 따라온다.</span></h1><p class="lead">최근 N개의 종가 평균을 이어 만든 선이 이동평균선입니다. 그래서 가격보다 먼저 움직일 수 없고, 추세를 확인하거나 노이즈를 줄여 보는 데 사용합니다.</p><div class="badge-row"><span class="badge green">필수</span><span class="badge blue">후행지표</span><span class="badge amber">단독 신호 금지</span></div></div><div class="hero-card"><div class="metric"><span>핵심</span><b>평균 · 기울기 · 위치</b></div><div class="metric"><span>단기선</span><b>가격에 빠르게 반응</b></div><div class="metric"><span>장기선</span><b>느리지만 안정적</b></div><div class="metric"><span>주의</span><b>횡보장 휩쏘</b></div></div></div></header>
+
+<section class="section" id="formula"><div class="eyebrow">01 · WHAT IT IS</div><h2>20일선은 “최근 20개 일봉 종가의 평균”</h2><p class="section-lead">일봉에서 20 이동평균선이라면 최근 20거래일의 종가를 평균한 값입니다. 60분봉이라면 최근 20개의 60분봉을 평균합니다. 숫자 20은 항상 ‘20일’이라는 뜻이 아닙니다.</p>
+<div class="formula-box"><div class="formula">(최근 N개 종가의 합) ÷ N</div><div class="formula-sub">단순이동평균선(SMA)의 기본 개념</div></div>
+<div class="grid2" style="margin-top:16px"><div class="card"><h3>예: 3기간 SMA</h3><p>종가가 <b>100 → 103 → 106</b>이라면</p><p style="font-size:22px;font-weight:900">(100 + 103 + 106) ÷ 3 = <span style="color:#2563eb">103</span></p></div><div class="card"><h3>새 가격이 들어오면?</h3><p>다음 종가가 109라면 가장 오래된 100이 빠지고</p><p style="font-size:22px;font-weight:900">(103 + 106 + 109) ÷ 3 = <span style="color:#2563eb">106</span></p></div></div>
+<div class="callout"><b>그래서 후행합니다.</b> 평균선은 이미 나온 가격을 계산해서 만든 결과입니다. 미래 가격을 직접 예측하는 선이 아닙니다.</div></section>
+
+<section class="section" id="interactive"><div class="eyebrow">02 · INTERACTIVE</div><h2>추세·눌림·횡보에서 이동평균선이 어떻게 달라지는지 비교</h2>
+<div class="scene-shell"><div class="scene-toolbar"><div><b>교육용 가격 + SMA 5 + SMA 20</b><div class="ma-legend"><span class="line-key"><i class="line-swatch price"></i>가격</span><span class="line-key"><i class="line-swatch fast"></i>SMA 5</span><span class="line-key"><i class="line-swatch slow"></i>SMA 20</span></div></div><div class="scenario-row"><button class="scenario-btn active" data-ma="trend">상승 추세</button><button class="scenario-btn" data-ma="pullback">눌림</button><button class="scenario-btn" data-ma="chop">횡보</button></div></div><div class="scene-stage" id="maScene"></div><div class="scene-caption"><strong id="maTitle"></strong><p id="maText"></p><div class="ohlc-row" style="margin-top:12px"><div class="ohlc"><span>현재 가격</span><strong id="maPrice"></strong></div><div class="ohlc"><span>SMA 5</span><strong id="maFast"></strong></div><div class="ohlc"><span>SMA 20</span><strong id="maSlow"></strong></div><div class="ohlc"><span>해석 포인트</span><strong id="maTag" style="font-size:14px"></strong></div></div></div></div></section>
+
+<section class="section" id="read"><div class="eyebrow">03 · THREE QUESTIONS</div><h2>이동평균선은 세 가지만 먼저 본다</h2>
+<div class="signal-grid"><div class="signal-chip"><b>① 가격 위치</b><span class="micro">가격이 평균선 위인가 아래인가?</span></div><div class="signal-chip"><b>② 기울기</b><span class="micro">평균선이 상승·하락·수평 중 무엇인가?</span></div><div class="signal-chip"><b>③ 간격</b><span class="micro">가격과 평균선이 너무 멀리 벌어졌는가?</span></div><div class="signal-chip"><b>④ 구조 확인</b><span class="micro">고점·저점 구조도 같은 방향인가?</span></div></div>
+<div class="callout good"><b>좋은 사용법:</b> 상승 구조 + SMA20 상승 + 가격이 조정 후 평균선·지지구간 부근에서 반응하는지 확인.</div>
+<div class="callout bad"><b>나쁜 사용법:</b> “가격이 20일선에 닿았으니 무조건 매수.” 평균선은 언제든 뚫릴 수 있습니다.</div></section>
+
+<section class="section" id="period"><div class="eyebrow">04 · PERIODS</div><h2>기간이 짧을수록 빠르고, 길수록 느리다</h2>
+<div style="overflow:auto"><table class="compare-table"><thead><tr><th>예시 기간</th><th>반응 속도</th><th>장점</th><th>약점</th></tr></thead><tbody><tr><td>5</td><td>빠름</td><td>단기 가격 변화 반영이 빠름</td><td>노이즈와 잦은 교차</td></tr><tr><td>20</td><td>중간</td><td>단기~중기 흐름을 비교적 부드럽게 봄</td><td>급격한 전환에는 늦음</td></tr><tr><td>60 이상</td><td>느림</td><td>큰 흐름 확인에 유용</td><td>반응이 매우 늦을 수 있음</td></tr></tbody></table></div>
+<p class="micro">위 숫자는 학습용 대표 예시입니다. 시장과 시간축에 따라 사용하는 기간은 달라질 수 있습니다.</p></section>
+
+<section class="section" id="cross"><div class="eyebrow">05 · CROSSOVER</div><h2>골든크로스·데드크로스는 결과이지 예언이 아니다</h2>
+<div class="grid2"><div class="card"><h3>골든크로스</h3><p>짧은 평균선이 긴 평균선을 아래에서 위로 통과하는 현상.</p><div class="callout good" style="margin-bottom:0"><b>의미:</b> 최근 가격 평균이 장기 평균보다 빠르게 강해졌다는 결과.</div></div><div class="card"><h3>데드크로스</h3><p>짧은 평균선이 긴 평균선을 위에서 아래로 통과하는 현상.</p><div class="callout warn" style="margin-bottom:0"><b>의미:</b> 최근 가격 평균이 장기 평균보다 빠르게 약해졌다는 결과.</div></div></div>
+<div class="callout bad"><b>횡보장에서는 교차가 반복됩니다.</b> 교차 자체를 매수·매도 버튼으로 쓰면 상승도 하락도 아닌 구간에서 신호가 계속 뒤집힐 수 있습니다.</div></section>
+
+<section class="section" id="distance"><div class="eyebrow">06 · DISTANCE & REVERSION</div><h2>평균선과 멀리 벌어졌다는 이유만으로 반전을 단정하지 않는다</h2>
+<div class="grid2"><div class="card"><h3>이격 확대</h3><p>가격이 평균선보다 훨씬 빠르게 움직이면 간격이 벌어집니다.</p><p class="micro">과열 가능성을 생각할 수 있지만 강한 추세에서는 이격이 오래 유지될 수도 있습니다.</p></div><div class="card"><h3>평균 회귀</h3><p>가격이 평균 근처로 되돌아오는 현상은 자주 관찰됩니다.</p><p class="micro">하지만 “평균에서 멀면 반드시 돌아온다”는 보장은 없습니다.</p></div></div></section>
+
+<section class="section" id="quiz"><div class="eyebrow">07 · CHECK YOURSELF</div><h2>3분 확인 문제</h2>
+<div class="quiz" data-feedback="20일 SMA는 최근 20개 일봉 종가를 평균한 값이므로 가격보다 늦게 반응합니다."><div class="q">Q1. 일봉의 20일 이동평균선을 가장 정확히 설명한 것은?</div><div class="options"><button class="option" data-correct="true">① 최근 20개 일봉 종가의 평균을 이어 만든 선</button><button class="option" data-correct="false">② 향후 20일 예상가격을 계산한 선</button><button class="option" data-correct="false">③ 항상 지지되는 가격선</button></div><div class="quiz-feedback"></div></div>
+<div class="quiz" data-feedback="횡보에서는 가격과 평균선이 서로 자주 교차하기 때문에 교차 신호의 신뢰도가 떨어질 수 있습니다."><div class="q">Q2. 골든크로스가 특히 자주 속일 수 있는 환경은?</div><div class="options"><button class="option" data-correct="false">① 뚜렷한 추세가 이어지는 구간</button><button class="option" data-correct="true">② 좁은 범위의 횡보 구간</button></div><div class="quiz-feedback"></div></div>
+<div class="quiz" data-feedback="이동평균선은 가격 구조·지지저항·거래량과 함께 쓰는 보조 도구로 보는 것이 적절합니다."><div class="q">Q3. 가격이 SMA20에 닿았다. 다음 행동으로 가장 적절한 것은?</div><div class="options"><button class="option" data-correct="false">① 무조건 매수</button><button class="option" data-correct="true">② 추세 구조와 지지구간, 거래량 반응을 함께 확인</button></div><div class="quiz-feedback"></div></div></section>
+
+<section class="section" id="use"><div class="eyebrow">08 · USE IT</div><h2>이동평균선은 마지막 확인 도구로 붙인다</h2>
+<div class="framework"><div class="fw"><b>1. 캔들</b><span class="micro">가격 반응</span></div><div class="fw"><b>2. 거래량</b><span class="micro">참여 강도</span></div><div class="fw"><b>3. 추세</b><span class="micro">HH·HL·LH·LL</span></div><div class="fw"><b>4. 지지저항</b><span class="micro">핵심 구간</span></div><div class="fw"><b>5. 이평선</b><span class="micro">방향 확인</span></div></div>
+<div class="callout good"><b>실전 문장:</b> “일봉 상승 구조가 유지되고, 조정 거래량이 줄었으며, 주요 지지구간과 상승 중인 SMA20 부근에서 가격 반응이 나왔다. 다음 고점 회복 여부를 확인한다.”</div></section>
+
+<section class="section"><div class="next-card"><div><div class="eyebrow">NEXT · BEGINNER FINAL</div><h2 style="margin:4px 0 7px">초급 실전 판단 훈련</h2><p style="margin:0;color:#475467">이제 지표를 하나씩 보는 단계가 끝났습니다. 다음 페이지에서는 모든 근거를 한 차트에서 합칩니다.</p></div><a href="beginner-practice.html">초급 실전 시작 →</a></div></section>
+<footer class="footer">교육용 자료입니다. 특정 자산의 매수·매도를 권유하지 않습니다.</footer>
+</main></div></body></html>

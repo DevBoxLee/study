@@ -81,7 +81,36 @@ const root=path.resolve(__dirname,'..');
    }
    await page.screenshot({path:path.join(root,'artifacts/chart-support-mobile.png'),fullPage:true});
 
+   await page.setViewportSize({width:1440,height:1000});
+   await page.goto('http://127.0.0.1:8765/chart/beginner/moving-average.html');
+   await page.waitForFunction(()=>document.querySelector('#maScene')?.children.length>0);
+   await page.locator('[data-ma="chop"]').click();
+   assert.match(await page.locator('#maTitle').textContent(),/횡보장/);
+   await page.locator('.quiz .option[data-correct="true"]').first().click();
+   assert.ok(await page.locator('.quiz-feedback.show').first().isVisible());
+   await page.screenshot({path:path.join(root,'artifacts/chart-ma-desktop.png'),fullPage:true});
+
+   await page.goto('http://127.0.0.1:8765/chart/beginner/beginner-practice.html');
+   await page.waitForFunction(()=>document.querySelector('#labChart')?.children.length>0);
+   assert.equal(await page.locator('#decisionActions .decision-btn').count(),4);
+   await page.locator('#decisionActions .decision-btn').nth(1).click();
+   assert.ok(await page.locator('#labFeedback.show').isVisible());
+   assert.ok(await page.locator('#futureBtn.show').isVisible());
+   await page.locator('#futureBtn').click();
+   assert.ok(await page.locator('#futureText').isVisible());
+   await page.locator('[data-lab="falsebreak"]').click();
+   assert.match(await page.locator('#labName').textContent(),/가짜 돌파/);
+   await page.screenshot({path:path.join(root,'artifacts/chart-beginner-practice-desktop.png'),fullPage:true});
+
+   await page.setViewportSize({width:375,height:850});
+   for(const p of ['moving-average.html','beginner-practice.html']){
+     await page.goto('http://127.0.0.1:8765/chart/beginner/'+p);
+     const ov=await page.evaluate(()=>({overflow:document.documentElement.scrollWidth>innerWidth,scrollWidth:document.documentElement.scrollWidth,innerWidth,wide:[...document.querySelectorAll('*')].filter(el=>el.getBoundingClientRect().right>innerWidth+1).slice(0,5).map(el=>({tag:el.tagName,cls:el.className,right:Math.round(el.getBoundingClientRect().right)}))}));
+     assert.equal(ov.overflow,false,p+' mobile overflow '+JSON.stringify(ov));
+   }
+   await page.screenshot({path:path.join(root,'artifacts/chart-beginner-practice-mobile.png'),fullPage:true});
+
    assert.deepEqual(errors,[]);
-   console.log('PASS: finance guide + 4 interactive chart lessons, desktop/mobile');
+   console.log('PASS: finance guide + 6 interactive chart lessons, desktop/mobile');
  } finally { if(browser) await browser.close(); server.kill(); }
 })().catch(e=>{console.error(e);process.exitCode=1});

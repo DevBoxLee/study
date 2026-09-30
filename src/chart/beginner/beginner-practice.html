@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="ko">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>초급 실전 판단 훈련 — 우리집 차트 공부</title>
+<link rel="stylesheet" href="../assets/chart.css"><script src="../assets/beginner-lab.js" defer></script></head>
+<body>
+<div class="progress"><span id="progressBar"></span></div>
+<div class="layout">
+<aside class="sidebar">
+<a class="back-home" href="../../index.html">← 우리집 금융공부로 돌아가기</a>
+<div class="brand"><small>PRICE ACTION LAB</small>차트 공부</div>
+<div class="side-copy">초급의 목적은 패턴 이름을 많이 외우는 것이 아니라, 한 차트에서 근거와 무효화 기준을 말할 수 있게 되는 것입니다.</div>
+<nav>
+<details class="nav-group"><summary>00. 시작하기 <span>2</span></summary><div class="nav-items"><a class="nav-link" href="../index.html">학습 로드맵</a><span class="nav-disabled">차트의 역할</span></div></details>
+<details class="nav-group" open><summary>01. 초급 · 읽는다 <span>7</span></summary><div class="nav-items"><span class="nav-disabled">01 차트의 기본 구조</span><a class="nav-link" href="candlestick.html">02 캔들 이해</a><a class="nav-link" href="volume.html">03 거래량 이해</a><a class="nav-link" href="trend-structure.html">04 추세와 고점·저점</a><a class="nav-link" href="support-resistance.html">05 지지와 저항</a><a class="nav-link" href="moving-average.html">06 이동평균선</a><a class="nav-link active" href="beginner-practice.html">07 초급 실전</a></div></details>
+<details class="nav-group"><summary>02. 중급 · 판단한다 <span>9</span></summary><div class="nav-items"><span class="nav-disabled">시장구조 · 돌파 · 눌림목</span><span class="nav-disabled">차트 패턴 · RSI/MACD</span><span class="nav-disabled">매수 · 매도 판단</span></div></details>
+<details class="nav-group"><summary>03. 고급 · 전략을 만든다 <span>9</span></summary><div class="nav-items"><span class="nav-disabled">멀티 타임프레임</span><span class="nav-disabled">리스크 · 포지션 사이징</span><span class="nav-disabled">스윙 · 복기</span></div></details>
+</nav>
+<div class="nav-kicker"><b>이 페이지 목표</b><br>차트가 멈춘 시점에서 근거를 정리하고, 행동보다 먼저 무효화 기준을 정합니다.</div>
+</aside>
+<main>
+<header class="hero"><div class="hero-grid"><div><div class="eyebrow">BEGINNER 07 · DECISION LAB</div><h1>미래를 가린 채<br><span style="color:#2563eb">지금 무엇을 할지</span> 판단한다.</h1><p class="lead">정답을 맞히는 게임이 아닙니다. 캔들·거래량·추세·지지저항·이동평균선을 한 번에 보고, 근거가 충분한지와 어떤 조건에서 판단을 버릴지를 훈련합니다.</p><div class="badge-row"><span class="badge green">초급 최종</span><span class="badge blue">미래 가림</span><span class="badge amber">분할매수 판단 연결</span></div></div><div class="hero-card"><div class="metric"><span>근거</span><b>최소 3개</b></div><div class="metric"><span>반드시 포함</span><b>무효화 기준</b></div><div class="metric"><span>금지</span><b>캔들 하나로 결론</b></div><div class="metric"><span>목표</span><b>일관된 판단 과정</b></div></div></div></header>
+
+<section class="section" id="framework"><div class="eyebrow">01 · BEFORE YOU CLICK</div><h2>항상 같은 순서로 본다</h2>
+<div class="framework"><div class="fw"><b>1. 캔들</b><span class="micro">현재 반응은?</span></div><div class="fw"><b>2. 거래량</b><span class="micro">참여가 늘었나?</span></div><div class="fw"><b>3. 추세</b><span class="micro">시장 구조는?</span></div><div class="fw"><b>4. 지지저항</b><span class="micro">어디에 있나?</span></div><div class="fw"><b>5. 이평선</b><span class="micro">방향이 같은가?</span></div></div>
+<div class="callout"><b>그 다음 행동.</b> 차트를 보고 바로 매수/매도를 누르는 것이 아니라, 먼저 “내 판단이 틀렸다고 인정할 가격은 어디인가?”를 정합니다.</div></section>
+
+<section class="section" id="lab"><div class="eyebrow">02 · INTERACTIVE DECISION LAB</div><h2>미래를 가린 3가지 상황</h2><p class="section-lead">모두 교육용 합성 데이터입니다. 버튼을 선택한 뒤에만 미래 구간을 볼 수 있습니다.</p>
+<div class="lab-shell">
+<div class="lab-head"><div><b id="labName">A · 상승추세 눌림</b><div style="font-size:11px;color:#94a3b8;margin-top:3px">캔들 + 거래량 + SMA20 + 핵심 구간</div></div><div class="lab-tabs"><button class="lab-tab active" data-lab="pullback">A · 눌림</button><button class="lab-tab" data-lab="falsebreak">B · 가짜 돌파</button><button class="lab-tab" data-lab="rebound">C · 하락 반등</button></div></div>
+<div class="lab-chart" id="labChart"></div>
+<div class="decision-panel">
+<div class="evidence-box"><b>차트에서 먼저 확인할 근거</b><div class="evidence-list" id="evidenceList"></div><div class="callout warn" style="margin-bottom:0"><b>답을 누르기 전:</b> “왜?”와 “틀렸다면 어디서 인정할지?”를 말해보세요.</div></div>
+<div class="decision-box"><b>현재 시점에서 가장 일관된 판단은?</b><div class="decision-actions" id="decisionActions"></div><div class="lab-feedback" id="labFeedback"></div><button class="future-btn" id="futureBtn">미래 구간 보기 →</button><div id="futureText" class="callout good" style="display:none;margin-bottom:0"></div></div>
+</div></div></section>
+
+<section class="section" id="why"><div class="eyebrow">03 · WHAT THE LAB IS TEACHING</div><h2>좋은 판단은 “상승을 맞히는 능력”이 아니다</h2>
+<div class="grid3"><div class="card"><h3>근거가 겹치는가</h3><p>캔들 하나가 아니라 추세·위치·거래량·평균선 등 서로 다른 근거가 같은 방향인지 봅니다.</p></div><div class="card"><h3>진입 규모를 조절하는가</h3><p>조건이 좋아도 미래는 불확실합니다. 그래서 한 번에 모든 자금을 넣는 대신 분할 접근을 고려할 수 있습니다.</p></div><div class="card"><h3>틀렸음을 인정할 수 있는가</h3><p>사전에 정한 핵심 구간이 무너지면 기존 가설을 계속 합리화하지 않고 다시 분석합니다.</p></div></div>
+<div class="callout bad"><b>미래 공개 후 결과만 보면 안 됩니다.</b> 같은 판단 과정이 어떤 날은 성공하고 어떤 날은 실패할 수 있습니다. 학습 목표는 결과가 아니라 과정의 일관성입니다.</div></section>
+
+<section class="section" id="checklist"><div class="eyebrow">04 · BEGINNER CHECKLIST</div><h2>실제 차트를 볼 때 복사해서 쓰는 7문장</h2>
+<div class="checklist">
+<div class="checkitem"><b>1. 현재 시간축</b><span class="micro">일봉 / 주봉 / 분봉 중 무엇을 보고 있는가?</span></div>
+<div class="checkitem"><b>2. 추세 구조</b><span class="micro">상승 / 하락 / 횡보?</span></div>
+<div class="checkitem"><b>3. 핵심 구간</b><span class="micro">가까운 지지·저항은 어디인가?</span></div>
+<div class="checkitem"><b>4. 현재 캔들</b><span class="micro">어떤 가격 반응이 나왔나?</span></div>
+<div class="checkitem"><b>5. 거래량</b><span class="micro">최근 평균 대비 늘었나 줄었나?</span></div>
+<div class="checkitem"><b>6. 이평선</b><span class="micro">기울기와 가격 위치가 구조와 같은가?</span></div>
+<div class="checkitem"><b>7. 무효화</b><span class="micro">어느 가격에서 내 판단이 틀린가?</span></div>
+</div></section>
+
+<section class="section" id="example"><div class="eyebrow">05 · FROM OBSERVATION TO ACTION</div><h2>분할매수 판단 문장은 이렇게 만든다</h2>
+<div class="grid2"><div class="card"><h3>근거가 약한 문장</h3><p style="font-size:19px;font-weight:850">“아랫꼬리가 나왔으니 매수.”</p><p class="micro">캔들 하나만 보고 있으며 추세·위치·거래량·무효화 기준이 없습니다.</p></div><div class="card"><h3>근거가 있는 문장</h3><p style="font-size:17px;font-weight:850">“일봉 상승 구조에서 108~111 지지구간까지 조정했고 거래량이 줄었다. 상승 중인 SMA20 부근에서 반등 캔들이 나왔다. 직전 단기 고점 회복 시 1차 분할 진입을 검토하고, 지지구간 종가 이탈 시 가설을 폐기한다.”</p></div></div></section>
+
+<section class="section" id="score"><div class="eyebrow">06 · SELF SCORE</div><h2>초급을 마쳤다면 이 다섯 질문에 답할 수 있어야 한다</h2>
+<div class="lesson-summary"><div class="summary-card"><b>캔들</b><span class="micro">OHLC와 몸통·꼬리를 과장 없이 설명할 수 있다.</span></div><div class="summary-card"><b>거래량</b><span class="micro">절대값이 아니라 최근 대비로 설명할 수 있다.</span></div><div class="summary-card"><b>추세</b><span class="micro">HH·HL·LH·LL로 구조를 말할 수 있다.</span></div><div class="summary-card"><b>지지저항</b><span class="micro">한 줄이 아니라 구간으로 표시할 수 있다.</span></div><div class="summary-card"><b>이동평균선</b><span class="micro">후행지표이며 보조 도구라는 점을 설명할 수 있다.</span></div><div class="summary-card"><b>판단</b><span class="micro">근거와 무효화 기준을 함께 말할 수 있다.</span></div></div></section>
+
+<section class="section"><div class="beginner-complete"><div class="eyebrow" style="color:#93c5fd">BEGINNER COMPLETE</div><h2>이제 “차트가 오를 것 같다” 대신<br>“어떤 근거로 무엇을 기다리는지” 말할 수 있어야 한다.</h2><p>중급부터는 돌파·눌림목·시장구조·패턴·RSI/MACD를 배우지만, 전부 이 초급 프레임 위에 얹습니다. 초급이 흔들리면 지표를 더 추가하지 않습니다.</p><div class="badge-row"><span class="badge">캔들</span><span class="badge">거래량</span><span class="badge">추세</span><span class="badge">지지저항</span><span class="badge">이동평균선</span><span class="badge">무효화 기준</span></div></div></section>
+
+<section class="section"><div class="next-card"><div><div class="eyebrow">NEXT · INTERMEDIATE</div><h2 style="margin:4px 0 7px">중급은 돌파와 눌림목부터</h2><p style="margin:0;color:#475467">초급에서 익힌 구조를 실제 진입 판단으로 확장합니다.</p></div><a href="../index.html">로드맵 보기 →</a></div></section>
+<footer class="footer">교육용 합성 차트입니다. 특정 자산의 매수·매도를 권유하지 않습니다.</footer>
+</main></div></body></html>
