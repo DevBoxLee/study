@@ -1,6 +1,16 @@
 const {chromium}=require('playwright');
 const {spawn}=require('node:child_process');
+const http=require('node:http');
 const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
+function probe(url){
+ return new Promise(resolve=>{
+   let settled=false;
+   const finish=(ok)=>{if(settled)return;settled=true;resolve(ok);};
+   const req=http.get(url,res=>{res.resume();res.on('end',()=>finish((res.statusCode||0)>=200&&(res.statusCode||0)<500));});
+   req.setTimeout(500,()=>{req.destroy();finish(false);});
+   req.on('error',()=>finish(false));
+ });
+}
 const root=path.resolve(__dirname,'..');
 (async()=>{
  fs.mkdirSync(path.join(root,'artifacts'),{recursive:true});
@@ -8,7 +18,7 @@ const root=path.resolve(__dirname,'..');
  let browser;
  try{
    let ready=false;
-   for(let i=0;i<60;i++){try{const r=await fetch('http://127.0.0.1:8765/');if(r.ok){ready=true;break;}}catch{}await new Promise(r=>setTimeout(r,100));}
+   for(let i=0;i<60;i++){if(await probe('http://127.0.0.1:8765/')){ready=true;break;}await new Promise(r=>setTimeout(r,100));}
    assert.ok(ready);
    browser=await chromium.launch({headless:true,args:['--no-sandbox']});
    const page=await browser.newPage({viewport:{width:1440,height:1000}});
