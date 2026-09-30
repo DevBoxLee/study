@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>캔들 이해 — 우리집 차트 공부</title>
+<link rel="stylesheet" href="../assets/chart.css">
+<script src="../assets/candlestick.js" defer></script>
+<script src="https://unpkg.com/lightweight-charts@5.2.1/dist/lightweight-charts.standalone.production.js" async onload="window.initLearningChart&&window.initLearningChart()" onerror="window.initLearningChart&&window.initLearningChart()"></script>
+</head>
+<body>
+<div class="progress"><span id="progressBar"></span></div>
+<div class="layout">
+<aside class="sidebar">
+<a class="back-home" href="../../index.html">← 우리집 금융공부로 돌아가기</a>
+<div class="brand"><small>PRICE ACTION LAB</small>차트 공부</div>
+<div class="side-copy">읽기 → 해석 → 판단 → 전략. 패턴 암기보다 가격이 남긴 흔적을 이해합니다.</div>
+<nav>
+<details class="nav-group"><summary>00. 시작하기 <span>2</span></summary><div class="nav-items"><a class="nav-link" href="../index.html">학습 로드맵</a><span class="nav-disabled">차트의 역할</span></div></details>
+<details class="nav-group" open><summary>01. 초급 · 읽는다 <span>7</span></summary><div class="nav-items"><span class="nav-disabled">01 차트의 기본 구조</span><a class="nav-link active" href="candlestick.html">02 캔들 이해</a><span class="nav-disabled">03 거래량 이해</span><span class="nav-disabled">04 추세와 고점·저점</span><span class="nav-disabled">05 지지와 저항</span><span class="nav-disabled">06 이동평균선</span><span class="nav-disabled">07 초급 실전</span></div></details>
+<details class="nav-group"><summary>02. 중급 · 판단한다 <span>9</span></summary><div class="nav-items"><span class="nav-disabled">시장구조 · 돌파 · 눌림목</span><span class="nav-disabled">차트 패턴 · RSI/MACD</span><span class="nav-disabled">매수 · 매도 판단</span></div></details>
+<details class="nav-group"><summary>03. 고급 · 전략을 만든다 <span>9</span></summary><div class="nav-items"><span class="nav-disabled">멀티 타임프레임</span><span class="nav-disabled">리스크 · 포지션 사이징</span><span class="nav-disabled">스윙 · 복기</span></div></details>
+<details class="nav-group"><summary>04. 실전 연구소 <span>5</span></summary><div class="nav-items"><span class="nav-disabled">ETF · 개별주</span><span class="nav-disabled">Bitcoin · Altcoin</span><span class="nav-disabled">차트 판단 훈련</span></div></details>
+</nav>
+<div class="nav-kicker"><b>이 페이지 목표</b><br>캔들 이름을 외우는 것이 아니라 시가·고가·저가·종가만 보고 한 기간의 가격 흔적을 설명합니다.</div>
+</aside>
+
+<main>
+<header class="hero">
+<div class="hero-grid">
+<div>
+<div class="eyebrow">BEGINNER 02 · CANDLESTICK</div>
+<h1>캔들 하나는<br>가격의 <span style="color:#2563eb">결과표</span>다.</h1>
+<p class="lead">양봉·음봉 이름부터 외우지 않습니다. 한 기간 동안 어디서 시작해, 어디까지 갔고, 어디서 끝났는지 읽으면 캔들의 핵심은 이미 이해한 것입니다.</p>
+<div class="badge-row"><span class="badge green">필수</span><span class="badge blue">예상 15~20분</span><span class="badge amber">주식 · ETF · 코인 공통</span></div>
+</div>
+<div class="hero-card">
+<div class="metric"><span>오늘 배울 것</span><b>OHLC</b></div>
+<div class="metric"><span>핵심 질문</span><b>누가 끝까지 밀었나?</b></div>
+<div class="metric"><span>하지 않을 것</span><b>캔들 이름 암기</b></div>
+<div class="metric"><span>끝나면</span><b>캔들을 말로 설명</b></div>
+</div>
+</div>
+</header>
+
+<section class="section" id="why">
+<div class="eyebrow">01 · WHY IT MATTERS</div>
+<h2>왜 캔들부터 배우나</h2>
+<p class="section-lead">차트의 거의 모든 분석은 가격 움직임을 압축해서 읽는 일입니다. 캔들은 그 가장 작은 단위입니다.</p>
+<div class="grid3">
+<div class="card soft"><div class="keyline"><div class="num">1</div><div><b>시작과 끝</b><div class="micro">시가와 종가로 그 기간의 방향을 봅니다.</div></div></div></div>
+<div class="card soft"><div class="keyline"><div class="num">2</div><div><b>장중 극단값</b><div class="micro">고가·저가로 위아래 힘의 범위를 봅니다.</div></div></div></div>
+<div class="card soft"><div class="keyline"><div class="num">3</div><div><b>맥락과 결합</b><div class="micro">추세·지지·저항·거래량과 합칠 때 의미가 커집니다.</div></div></div></div>
+</div>
+<div class="callout"><b>핵심:</b> 캔들은 미래를 예언하지 않습니다. <b>이미 끝난 한 기간의 가격 정보</b>를 압축해서 보여줍니다.</div>
+</section>
+
+<section class="section" id="anatomy">
+<div class="eyebrow">02 · INTERACTIVE ANATOMY</div>
+<h2>직접 눌러보며 캔들을 해부해보자</h2>
+<p class="section-lead">같은 구조라도 몸통과 꼬리 비율이 달라지면 읽을 포인트가 달라집니다.</p>
+<div class="anatomy">
+<div class="candle-stage"><svg id="candleSvg" viewBox="0 0 420 390" aria-label="교육용 캔들 구조"></svg></div>
+<div class="candle-controls">
+<div><div class="mini-title">상황 바꿔보기</div><div class="preset-row">
+<button class="preset active" data-preset="bullish">큰 양봉</button>
+<button class="preset" data-preset="bearish">큰 음봉</button>
+<button class="preset" data-preset="upper">긴 윗꼬리</button>
+<button class="preset" data-preset="lower">긴 아랫꼬리</button>
+<button class="preset" data-preset="doji">도지</button>
+</div></div>
+<div class="ohlc-row">
+<div class="ohlc"><span>OPEN · 시가</span><strong id="openVal">100</strong></div>
+<div class="ohlc"><span>HIGH · 고가</span><strong id="highVal">116</strong></div>
+<div class="ohlc"><span>LOW · 저가</span><strong id="lowVal">96</strong></div>
+<div class="ohlc"><span>CLOSE · 종가</span><strong id="closeVal">112</strong></div>
+</div>
+<div class="meaning"><div class="verdict" id="meaningTitle">매수세가 종가를 위로 끌어올린 날</div><p id="meaningText"></p><hr style="border:0;border-top:1px solid #e2e8f0;margin:14px 0"><p id="bodyMeaning"></p></div>
+<div class="callout warn" style="margin:0"><b>설명 방식:</b> “초록색이라 좋은 캔들”이 아니라 “100에서 시작해 장중 96~116 사이를 움직이고 112에 끝났다”라고 먼저 설명합니다.</div>
+</div>
+</div>
+</section>
+
+<section class="section" id="path">
+<div class="eyebrow">03 · IMPORTANT LIMIT</div>
+<h2>캔들만 보고 장중 순서를 상상하면 안 된다</h2>
+<p class="section-lead">OHLC가 같아도 실제 장중 이동 경로는 여러 개일 수 있습니다. 이 사실을 모르면 캔들 한 개에 이야기를 과하게 붙이기 쉽습니다.</p>
+<div class="compare-paths">
+<div class="pathbox"><div class="mini-title">경로 A · 먼저 급락 후 반등</div><svg viewBox="0 0 500 210"><rect width="500" height="210" rx="14" fill="#f8fafc"/><polyline points="28,105 120,170 235,80 345,55 470,72" fill="none" stroke="#2563eb" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="28" cy="105" r="6" fill="#0f172a"/><circle cx="470" cy="72" r="6" fill="#059669"/><text x="22" y="95" font-size="12" fill="#475569">OPEN</text><text x="425" y="62" font-size="12" fill="#475569">CLOSE</text></svg></div>
+<div class="pathbox"><div class="mini-title">경로 B · 먼저 급등 후 흔들림</div><svg viewBox="0 0 500 210"><rect width="500" height="210" rx="14" fill="#f8fafc"/><polyline points="28,105 120,42 245,170 360,92 470,72" fill="none" stroke="#7c3aed" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="28" cy="105" r="6" fill="#0f172a"/><circle cx="470" cy="72" r="6" fill="#059669"/><text x="22" y="95" font-size="12" fill="#475569">OPEN</text><text x="425" y="62" font-size="12" fill="#475569">CLOSE</text></svg></div>
+</div>
+<div class="callout bad"><b>두 날은 같은 OHLC 캔들이 될 수 있습니다.</b> 일봉 하나만 보고 “아침에 떨어졌다가 오후에 올랐다”처럼 시간 순서를 단정하면 안 됩니다.</div>
+</section>
+
+<section class="section" id="signals">
+<div class="eyebrow">04 · READ THE SHAPE</div>
+<h2>몸통과 꼬리는 이렇게 읽는다</h2>
+<div class="grid3">
+<div class="signal-card green"><div class="tiny-candle"><svg viewBox="0 0 70 100"><line x1="35" y1="5" x2="35" y2="95" stroke="#059669" stroke-width="4"/><rect x="19" y="24" width="32" height="54" rx="4" fill="#059669"/></svg></div><strong>큰 몸통</strong><p class="micro">시가와 종가 차이가 큽니다. 한쪽 방향으로 가격을 밀어낸 힘이 컸던 흔적입니다.</p></div>
+<div class="signal-card red"><div class="tiny-candle"><svg viewBox="0 0 70 100"><line x1="35" y1="5" x2="35" y2="95" stroke="#dc2626" stroke-width="4"/><rect x="20" y="50" width="30" height="16" rx="4" fill="#dc2626"/></svg></div><strong>긴 윗꼬리</strong><p class="micro">높은 가격까지 갔지만 밀렸습니다. 저항 부근인지, 거래량이 컸는지 함께 봅니다.</p></div>
+<div class="signal-card amber"><div class="tiny-candle"><svg viewBox="0 0 70 100"><line x1="35" y1="5" x2="35" y2="95" stroke="#d97706" stroke-width="4"/><rect x="20" y="38" width="30" height="16" rx="4" fill="#d97706"/></svg></div><strong>긴 아랫꼬리</strong><p class="micro">낮은 가격에서 되받아 올린 흔적입니다. 지지구간에서 나왔는지까지 확인해야 의미가 커집니다.</p></div>
+</div>
+<div class="callout"><b>위치가 모양보다 중요합니다.</b> 같은 긴 윗꼬리라도 신고가 돌파 직후인지, 장기 하락의 바닥권인지에 따라 해석은 달라집니다.</div>
+</section>
+
+<section class="section" id="chart">
+<div class="eyebrow">05 · CONNECT THE CANDLES</div>
+<h2>캔들 하나에서 여러 캔들로 확장</h2>
+<p class="section-lead">실전에서는 단일 캔들보다 앞뒤 흐름을 봅니다. 아래 데이터는 개념 학습용 예시이며 실제 종목 가격이 아닙니다.</p>
+<div class="chart-shell">
+<div class="chart-top"><div><b>EDU-01</b> · 일봉 · 교육용 예시</div><div class="chart-actions"><button class="chart-btn active" data-action="reset">전체 흐름</button><button class="chart-btn" data-action="focus">최근 구간 집중</button></div></div>
+<div class="market-chart" id="marketChart"></div>
+<div class="legend-note">캔들: OHLC · 아래 막대: 거래량 예시 · Lightweight Charts 연결 불가 시 SVG 대체 렌더링</div>
+</div>
+<div class="grid2" style="margin-top:16px">
+<div class="card"><h3>① 단일 캔들</h3><p>“마지막 캔들은 큰 양봉이다.” 여기까지는 <b>관찰</b>입니다.</p></div>
+<div class="card"><h3>② 흐름과 결합</h3><p>“최근 조정 뒤 양봉이 나오고 거래량도 늘었다.” 이제 <b>맥락</b>이 생깁니다.</p></div>
+</div>
+</section>
+
+<section class="section" id="mistake">
+<div class="eyebrow">06 · DON'T MEMORIZE SIGNALS</div>
+<h2>캔들 이름을 매수 신호처럼 외우지 않는다</h2>
+<div class="misconception">
+<div class="wrong"><h3>✕ 이렇게 외우기</h3><p>“긴 아랫꼬리 = 매수”</p><p>“장대양봉 = 계속 상승”</p><p>“도지 = 무조건 추세 반전”</p></div>
+<div class="vs">VS</div>
+<div class="right"><h3>✓ 이렇게 질문하기</h3><p>“어디에서 나온 캔들인가?”</p><p>“앞의 추세는 어땠나?”</p><p>“거래량은 평소보다 컸나?”</p></div>
+</div>
+<div class="callout good"><b>좋은 해석:</b> 캔들은 ‘신호’라기보다 <b>증거 하나</b>입니다. 다음 과정의 거래량·추세·지지저항과 결합해야 판단력이 올라갑니다.</div>
+</section>
+
+<section class="section" id="quiz">
+<div class="eyebrow">07 · CHECK YOURSELF</div>
+<h2>3분 확인 문제</h2>
+<p class="section-lead">결과 맞히기가 아니라 캔들이 과장 없이 말해주는 범위를 구분하는 훈련입니다.</p>
+<div class="quiz" data-feedback="시가 100, 종가 112이므로 양봉입니다. 고가·저가는 장중 범위를 보여줍니다."><div class="q">Q1. 시가 100, 고가 116, 저가 96, 종가 112인 캔들을 가장 정확하게 설명한 것은?</div><div class="options"><button class="option" data-correct="false">① 내일도 반드시 상승한다.</button><button class="option" data-correct="true">② 종가가 시가보다 높아 양봉이며, 장중 96~116 범위에서 거래됐다.</button><button class="option" data-correct="false">③ 오전에 96까지 떨어진 뒤 오후에 116까지 올랐다.</button></div><div class="quiz-feedback"></div></div>
+<div class="quiz" data-feedback="OHLC는 그 기간의 네 가격만 알려줍니다. 장중 순서는 분봉 등 더 세밀한 데이터 없이는 확정할 수 없습니다."><div class="q">Q2. 일봉 캔들 하나만 보고 알 수 없는 것은?</div><div class="options"><button class="option" data-correct="false">① 시가와 종가</button><button class="option" data-correct="false">② 고가와 저가</button><button class="option" data-correct="true">③ 고가와 저가가 발생한 정확한 시간 순서</button></div><div class="quiz-feedback"></div></div>
+<div class="quiz" data-feedback="캔들 모양은 위치·추세·거래량과 함께 봐야 합니다. 긴 아랫꼬리 하나는 매수 근거 전체가 아닙니다."><div class="q">Q3. 긴 아랫꼬리를 봤을 때 다음 행동으로 가장 적절한 것은?</div><div class="options"><button class="option" data-correct="false">① 바로 전액 매수</button><button class="option" data-correct="true">② 지지구간·추세·거래량을 추가로 확인</button><button class="option" data-correct="false">③ 무조건 하락 신호로 판단</button></div><div class="quiz-feedback"></div></div>
+</section>
+
+<section class="section" id="use">
+<div class="eyebrow">08 · USE IT IN REAL INVESTING</div>
+<h2>실제 차트에서는 4가지만 순서대로 본다</h2>
+<div class="checklist">
+<div class="checkitem"><b>1. 캔들</b><span class="micro">오늘 가격은 어떻게 끝났나?</span></div>
+<div class="checkitem"><b>2. 위치</b><span class="micro">지지·저항 어디쯤인가?</span></div>
+<div class="checkitem"><b>3. 흐름</b><span class="micro">상승·하락·횡보 중 무엇인가?</span></div>
+<div class="checkitem"><b>4. 거래량</b><span class="micro">이 움직임에 참여가 실렸나?</span></div>
+</div>
+<div class="callout warn"><b>분할매수와 연결할 때:</b> “아랫꼬리가 나왔으니 산다”가 아니라 “주요 지지구간에서 반응이 나왔고 추세와 거래량까지 확인한 뒤 1차 진입 여부를 검토한다”가 목표입니다.</div>
+</section>
+
+<section class="section">
+<div class="next-card"><div><div class="eyebrow">NEXT</div><h2 style="margin:4px 0 7px">다음은 거래량</h2><p style="margin:0;color:#475467">가격이 움직였다는 사실 다음에는 <b>그 움직임에 얼마나 많은 참여가 실렸는지</b> 봅니다.</p></div><a href="../index.html">로드맵 보기 →</a></div>
+</section>
+
+<footer class="footer">교육용 자료입니다. 특정 자산의 매수·매도를 권유하지 않습니다. Lightweight Charts™는 TradingView, Inc.의 상표이며 차트 렌더링에 사용됩니다.</footer>
+</main>
+</div>
+</body>
+</html>
