@@ -20,3 +20,6 @@ body[data-experience="scenario"] .lesson-hero{background:linear-gradient(135deg,
 .tax-compare-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:18px 0}.tax-compare-grid section{border:1px solid var(--line);border-radius:14px;padding:16px;background:#fff}.tax-compare-grid section>small{display:block;font-weight:900;color:var(--blue);margin-bottom:12px}.tax-compare-grid .mini-bars{gap:10px}.quiz-detail{padding:0 16px 15px 48px}.quiz-detail p{margin:8px 0!important;padding:0!important}.quiz-detail strong{display:inline;color:var(--ink)}
 body[data-experience="reference"] .lesson-hero,body[data-experience="summary"] .lesson-hero{background:linear-gradient(135deg,#fff,#f3f6fa)}
 @media(max-width:900px){.tax-compare-grid{grid-template-columns:1fr}}
+
+/* Long official-source URLs must wrap on narrow screens. */
+.prose a{overflow-wrap:anywhere;word-break:break-word}
