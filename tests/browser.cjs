@@ -48,7 +48,7 @@ const root=path.resolve(__dirname,'..');
 
   await page.setViewportSize({width:375,height:850});await route('01-overview');await page.locator('#menu').click();assert.equal(await page.locator('#menu').getAttribute('aria-expanded'),'true');
   await page.screenshot({path:path.join(root,'artifacts/mobile.png'),fullPage:true});
-  for(const id of ids){await route(id);const over=await page.evaluate(()=>Array.from(document.querySelectorAll('*')).filter(el=>{const r=el.getBoundingClientRect();return r.right>innerWidth+1||r.left<-1}).map(el=>({tag:el.tagName,cls:el.className||'',text:(el.textContent||'').trim().slice(0,100),left:el.getBoundingClientRect().left,right:el.getBoundingClientRect().right,width:el.getBoundingClientRect().width})).slice(0,20));if(over.length)console.log('OVERFLOW',id,JSON.stringify(over));assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,'mobile overflow '+id);}
+  for(const id of ids){await route(id);const over=await page.evaluate(()=>Array.from(document.querySelectorAll('*')).filter(el=>{const r=el.getBoundingClientRect();return r.right>innerWidth+1}).map(el=>({tag:el.tagName,cls:el.className||'',text:(el.textContent||'').trim().slice(0,100),left:el.getBoundingClientRect().left,right:el.getBoundingClientRect().right,width:el.getBoundingClientRect().width})).slice(0,20));if(over.length)console.log('OVERFLOW',id,JSON.stringify(over));assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false,'mobile overflow '+id);}
   assert.deepEqual(errors,[]);
   console.log('PASS: exact 19-section tax-account textbook, interactions, search, mobile, no old curriculum');
  }finally{if(browser)await browser.close();server.kill();}
