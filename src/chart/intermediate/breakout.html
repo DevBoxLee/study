@@ -1,0 +1,35 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>돌파와 이탈 — 우리집 차트 공부</title><link rel="stylesheet" href="../assets/chart.css"><script src="../assets/level-lab.js" defer></script></head><body data-scenario-type="breakout"><div class="progress"><span id="progressBar"></span></div><div class="layout">
+<aside class="sidebar">
+<a class="back-home" href="../../index.html">← 우리집 금융공부로 돌아가기</a>
+<div class="brand"><small>PRICE ACTION LAB</small>차트 공부</div>
+<div class="side-copy">초급은 읽는 법, 중급은 진입 판단, 고급은 손실까지 포함한 전략 설계를 다룹니다.</div>
+<nav>
+<details class="nav-group"><summary>00. 시작하기 <span>2</span></summary><div class="nav-items"><a class="nav-link" href="../index.html">학습 로드맵</a><span class="nav-disabled">차트의 역할</span></div></details>
+<details class="nav-group" ><summary>01. 초급 · 읽는다 <span>7</span></summary><div class="nav-items">
+<a class="nav-link" href="../beginner/candlestick.html">02 캔들 이해</a><a class="nav-link" href="../beginner/volume.html">03 거래량 이해</a><a class="nav-link" href="../beginner/trend-structure.html">04 추세와 고점·저점</a><a class="nav-link" href="../beginner/support-resistance.html">05 지지와 저항</a><a class="nav-link" href="../beginner/moving-average.html">06 이동평균선</a><a class="nav-link" href="../beginner/beginner-practice.html">07 초급 실전</a>
+</div></details>
+<details class="nav-group" open><summary>02. 중급 · 판단한다 <span>6</span></summary><div class="nav-items">
+<a class="nav-link " href="../intermediate/market-structure.html">01 시장구조와 추세전환</a>
+<a class="nav-link active" href="../intermediate/breakout.html">02 돌파와 이탈</a>
+<a class="nav-link " href="../intermediate/pullback.html">03 눌림목과 되돌림</a>
+<a class="nav-link " href="../intermediate/volume-confirmation.html">04 거래량 검증</a>
+<a class="nav-link " href="../intermediate/patterns-indicators.html">05 패턴 · RSI/MACD</a>
+<a class="nav-link " href="../intermediate/scaling-exits.html">06 분할매수 · 매도</a>
+</div></details>
+<details class="nav-group" ><summary>03. 고급 · 전략을 만든다 <span>6</span></summary><div class="nav-items">
+<a class="nav-link" href="../advanced/multi-timeframe.html">01 멀티 타임프레임</a>
+<a class="nav-link" href="../advanced/failed-signals.html">02 실패 신호</a>
+<a class="nav-link" href="../advanced/volatility-atr.html">03 변동성 · ATR</a>
+<a class="nav-link" href="../advanced/risk-reward-stop.html">04 손절 · Risk/Reward</a>
+<a class="nav-link" href="../advanced/position-sizing.html">05 포지션 사이징</a>
+<a class="nav-link" href="../advanced/swing-review.html">06 스윙 · 복기</a>
+</div></details>
+<details class="nav-group"><summary>04. 실전 연구소 <span>5</span></summary><div class="nav-items"><span class="nav-disabled">ETF · 개별주 · Bitcoin · Altcoin · 판단 훈련</span></div></details>
+</nav>
+<div class="nav-kicker"><b>중급 목표</b><br>좋아 보이는 차트와 실제 진입 가능한 차트를 구분합니다.</div>
+</aside><main><header class="hero level-hero"><div class="hero-grid"><div><div class="eyebrow">INTERMEDIATE 02 · BREAKOUT</div><h1>돌파와 이탈</h1><p class="lead">돌파 자체보다 유지·거래량·재테스트·진입거리까지 봐야 실제 매매 가능한 돌파를 고를 수 있습니다.</p><div class="badge-row"><span class="badge green">필수</span><span class="badge blue">가짜 돌파 구분</span><span class="badge amber">추격 방지</span></div><div class="lesson-index"><a href="market-structure.html">시장구조</a><a href="breakout.html">돌파</a><a href="pullback.html">눌림목</a><a href="volume-confirmation.html">거래량 검증</a><a href="patterns-indicators.html">패턴·RSI/MACD</a><a href="scaling-exits.html">분할매수·매도</a></div></div><div class="hero-card"><div class="metric"><span>확인</span><b>종가 유지</b></div><div class="metric"><span>보조</span><b>거래량</b></div><div class="metric"><span>후속</span><b>재테스트</b></div><div class="metric"><span>위험</span><b>늦은 추격</b></div></div></div></header>
+<section class="section"><div class="eyebrow">01 · BREAKOUT</div><h2>돌파는 가격이 경계 밖으로 “유지”되는 과정</h2><p class="section-lead">한 틱 넘긴 것보다 종가 유지, 거래량, 재테스트, 현재 위치의 이격을 함께 봅니다.</p><div class="evidence-matrix"><div class="evidence-cell good"><b>종가 유지</b><span class="micro">구간 밖에서 마감</span></div><div class="evidence-cell good"><b>거래량</b><span class="micro">최근 대비 참여 증가</span></div><div class="evidence-cell mid"><b>재테스트</b><span class="micro">돌파구간을 다시 지키는지</span></div><div class="evidence-cell bad"><b>과도한 이격</b><span class="micro">늦은 추격 위험</span></div></div></section>
+<section class="section"><div class="eyebrow">02 · INTERACTIVE</div><h2>성공 돌파·가짜 돌파·늦은 추격</h2><div class="scenario-shell"><div class="scenario-head"><b>돌파 시나리오</b><div class="scenario-actions"><button class="active" data-scenario="strong">돌파+유지</button><button data-scenario="fake">가짜 돌파</button><button data-scenario="late">늦은 추격</button></div></div><div class="scenario-canvas" id="scenarioCanvas"></div><div class="scenario-foot"><strong id="scenarioTitle"></strong><p id="scenarioText"></p></div></div></section>
+<section class="section"><div class="eyebrow">03 · BREAKOUT CHECK</div><h2>돌파 매수 전 네 문장</h2><div class="checklist"><div class="checkitem"><b>1. 무엇을 돌파했나?</b><span class="micro">최근 고점·횡보 상단·주요 저항?</span></div><div class="checkitem"><b>2. 종가가 유지됐나?</b><span class="micro">장중 꼬리만 넘은 것은 아닌가?</span></div><div class="checkitem"><b>3. 참여가 실렸나?</b><span class="micro">거래량이 최근 평균보다 늘었나?</span></div><div class="checkitem"><b>4. 이미 너무 멀리 갔나?</b><span class="micro">손절까지 거리가 지나치게 커졌나?</span></div></div></section>
+<section class="section"><div class="eyebrow">04 · NUMERIC EXAMPLE</div><h2>같은 돌파라도 진입가격이 다르면 전략이 달라진다</h2><div style="overflow:auto"><table class="compare-table"><thead><tr><th>구간</th><th>저항</th><th>현재가</th><th>무효화 기준</th><th>거리</th></tr></thead><tbody><tr><td>돌파 직후</td><td>100~102</td><td>103</td><td>99</td><td>약 3.9%</td></tr><tr><td>추격 시점</td><td>100~102</td><td>115</td><td>99</td><td>약 13.9%</td></tr></tbody></table></div><div class="callout warn"><b>좋은 자산·좋은 차트도 가격이 너무 멀어지면 손익비가 나빠질 수 있습니다.</b></div></section>
+<section class="section"><div class="eyebrow">05 · QUIZ</div><div class="quiz" data-feedback="돌파가 성공했더라도 진입이 너무 늦으면 손절거리와 기대손익비가 나빠질 수 있습니다."><div class="q">저항 돌파 후 가격이 이미 12% 급등했다. 가장 먼저 볼 것은?</div><div class="options"><button class="option" data-correct="true">현재가에서 무효화 기준까지 거리와 손익비</button><button class="option" data-correct="false">돌파했으니 무조건 추격매수</button></div><div class="quiz-feedback"></div></div></section><section class="section"><div class="next-card"><div><div class="eyebrow">NEXT</div><h2 style="margin:4px 0 7px">03 · 눌림목과 되돌림</h2></div><a href="pullback.html">다음 학습 →</a></div></section><footer class="footer">교육용 자료입니다. 특정 자산의 매수·매도를 권유하지 않습니다.</footer></main></div></body></html>
