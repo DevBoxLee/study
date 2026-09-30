@@ -7,7 +7,7 @@ from markdown import markdown_to_html
 ROOT=Path(__file__).resolve().parents[1]
 WIDGETS={
     'roadmap','money-story','horizon-timeline','compound','risk-lab','allocation-lab',
-    'etf-anatomy','account-map','account-quiz','policy-dashboard',
+    'etf-anatomy','account-map','account-quiz','tax-basics','isa-bridge','account-priority','early-withdrawal','pension-withdrawal','policy-dashboard',
     'buckets','drawdown','allocation','etf','accounts','isa','pension','irp',
     'tax-location','policy','filter'
 }
