@@ -1,0 +1,35 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>분할매수 · 분할매도 — 우리집 차트 공부</title><link rel="stylesheet" href="../assets/chart.css"><script src="../assets/level-lab.js" defer></script></head><body><div class="progress"><span id="progressBar"></span></div><div class="layout">
+<aside class="sidebar">
+<a class="back-home" href="../../index.html">← 우리집 금융공부로 돌아가기</a>
+<div class="brand"><small>PRICE ACTION LAB</small>차트 공부</div>
+<div class="side-copy">초급은 읽는 법, 중급은 진입 판단, 고급은 손실까지 포함한 전략 설계를 다룹니다.</div>
+<nav>
+<details class="nav-group"><summary>00. 시작하기 <span>2</span></summary><div class="nav-items"><a class="nav-link" href="../index.html">학습 로드맵</a><span class="nav-disabled">차트의 역할</span></div></details>
+<details class="nav-group" ><summary>01. 초급 · 읽는다 <span>7</span></summary><div class="nav-items">
+<a class="nav-link" href="../beginner/candlestick.html">02 캔들 이해</a><a class="nav-link" href="../beginner/volume.html">03 거래량 이해</a><a class="nav-link" href="../beginner/trend-structure.html">04 추세와 고점·저점</a><a class="nav-link" href="../beginner/support-resistance.html">05 지지와 저항</a><a class="nav-link" href="../beginner/moving-average.html">06 이동평균선</a><a class="nav-link" href="../beginner/beginner-practice.html">07 초급 실전</a>
+</div></details>
+<details class="nav-group" open><summary>02. 중급 · 판단한다 <span>6</span></summary><div class="nav-items">
+<a class="nav-link " href="../intermediate/market-structure.html">01 시장구조와 추세전환</a>
+<a class="nav-link " href="../intermediate/breakout.html">02 돌파와 이탈</a>
+<a class="nav-link " href="../intermediate/pullback.html">03 눌림목과 되돌림</a>
+<a class="nav-link " href="../intermediate/volume-confirmation.html">04 거래량 검증</a>
+<a class="nav-link " href="../intermediate/patterns-indicators.html">05 패턴 · RSI/MACD</a>
+<a class="nav-link active" href="../intermediate/scaling-exits.html">06 분할매수 · 매도</a>
+</div></details>
+<details class="nav-group" ><summary>03. 고급 · 전략을 만든다 <span>6</span></summary><div class="nav-items">
+<a class="nav-link" href="../advanced/multi-timeframe.html">01 멀티 타임프레임</a>
+<a class="nav-link" href="../advanced/failed-signals.html">02 실패 신호</a>
+<a class="nav-link" href="../advanced/volatility-atr.html">03 변동성 · ATR</a>
+<a class="nav-link" href="../advanced/risk-reward-stop.html">04 손절 · Risk/Reward</a>
+<a class="nav-link" href="../advanced/position-sizing.html">05 포지션 사이징</a>
+<a class="nav-link" href="../advanced/swing-review.html">06 스윙 · 복기</a>
+</div></details>
+<details class="nav-group"><summary>04. 실전 연구소 <span>5</span></summary><div class="nav-items"><span class="nav-disabled">ETF · 개별주 · Bitcoin · Altcoin · 판단 훈련</span></div></details>
+</nav>
+<div class="nav-kicker"><b>중급 목표</b><br>좋아 보이는 차트와 실제 진입 가능한 차트를 구분합니다.</div>
+</aside><main><header class="hero level-hero"><div class="hero-grid"><div><div class="eyebrow">INTERMEDIATE 06 · SCALING & EXITS</div><h1>분할매수 · 분할매도</h1><p class="lead">진입을 여러 번 나누는 목적은 미래를 모르기 때문입니다. 다만 각 차수에는 가격이 아니라 사전 조건이 있어야 합니다.</p><div class="badge-row"><span class="badge green">필수</span><span class="badge blue">조건 기반 분할</span><span class="badge amber">물타기 구분</span></div><div class="lesson-index"><a href="market-structure.html">시장구조</a><a href="breakout.html">돌파</a><a href="pullback.html">눌림목</a><a href="volume-confirmation.html">거래량 검증</a><a href="patterns-indicators.html">패턴·RSI/MACD</a><a href="scaling-exits.html">분할매수·매도</a></div></div><div class="hero-card"><div class="metric"><span>진입</span><b>조건별 분할</b></div><div class="metric"><span>추가</span><b>가설 강화 시</b></div><div class="metric"><span>중단</span><b>무효화 시</b></div><div class="metric"><span>매도</span><b>목표+구조</b></div></div></div></header>
+<section class="section"><div class="eyebrow">01 · SCALING</div><h2>분할매수는 “틀린 매매를 계속 사는 것”과 다르다</h2><p class="section-lead">진입 전에 총 투자금, 각 차수의 조건, 무효화 가격을 정해둡니다. 가격이 떨어질 때 감정적으로 추가하는 물타기와 구분합니다.</p><div class="calc-panel"><div class="calc-form"><label>총 계획금액<input id="scaleAmount" type="number" value="10000000" min="0"></label><p class="micro">아래 40/30/30은 교육용 예시입니다. 자산·위험도에 따라 비율은 달라질 수 있습니다.</p></div><div class="calc-results"><div class="calc-result"><span>1차 · 조건 확인</span><b id="scale1"></b></div><div class="calc-result"><span>2차 · 재테스트 성공</span><b id="scale2"></b></div><div class="calc-result"><span>3차 · 추세 재개 확인</span><b id="scale3"></b></div></div></div></section>
+<section class="section"><div class="eyebrow">02 · ENTRY RULES</div><h2>차수마다 “가격”보다 “조건”을 정한다</h2><div style="overflow:auto"><table class="compare-table"><thead><tr><th>차수</th><th>예시 조건</th><th>목적</th></tr></thead><tbody><tr><td>1차</td><td>지지구간 반응 + 구조 유지</td><td>초기 진입</td></tr><tr><td>2차</td><td>돌파구간 재테스트 성공</td><td>가설 강화</td></tr><tr><td>3차</td><td>직전 고점 재돌파</td><td>추세 재개 확인</td></tr></tbody></table></div><div class="callout bad"><b>무효화 기준을 깨면 추가매수 조건도 사라집니다.</b> “더 싸졌으니 2차”가 아닙니다.</div></section>
+<section class="section"><div class="eyebrow">03 · EXIT</div><h2>분할매도도 목표와 구조에 따라 나눈다</h2><div class="concept-map"><div class="concept-node"><b>목표구간 일부</b><span class="micro">주요 저항·사전 목표에서 일부 수익 실현.</span></div><div class="concept-node"><b>추세 보유분</b><span class="micro">구조가 유지되는 동안 일부 물량 유지.</span></div><div class="concept-node"><b>무효화 청산</b><span class="micro">사전에 정한 기준이 깨지면 손익과 무관하게 재평가.</span></div></div></section>
+<section class="section"><div class="eyebrow">04 · PROFIT VS PROCESS</div><h2>수익 중이어도 나쁜 매매일 수 있고, 손실이어도 좋은 매매일 수 있다</h2><div class="grid2"><div class="success-card"><b>좋은 과정</b><p>사전 조건대로 진입 · 규모 준수 · 무효화 기준 준수 · 계획대로 일부 청산.</p></div><div class="danger-card"><b>나쁜 과정</b><p>추격 · 계획 없는 물타기 · 손절 이동 · 수익이 나자 즉흥 매도.</p></div></div></section>
+<section class="section"><div class="eyebrow">05 · QUIZ</div><div class="quiz" data-feedback="분할매수는 사전 조건이 충족될 때 자금을 나눠 투입하는 방식입니다. 가설이 깨졌다면 추가매수보다 재평가가 우선입니다."><div class="q">1차 진입 후 핵심 지지구간이 명확히 이탈됐다. 2차 계획은?</div><div class="options"><button class="option" data-correct="false">가격이 더 싸졌으니 자동으로 2차 매수</button><button class="option" data-correct="true">기존 가설 무효화 여부를 먼저 재평가</button></div><div class="quiz-feedback"></div></div></section><section class="section"><div class="next-card"><div><div class="eyebrow">NEXT</div><h2 style="margin:4px 0 7px">고급 01 · 멀티 타임프레임</h2></div><a href="../advanced/multi-timeframe.html">다음 학습 →</a></div></section><footer class="footer">교육용 자료입니다. 특정 자산의 매수·매도를 권유하지 않습니다.</footer></main></div></body></html>
