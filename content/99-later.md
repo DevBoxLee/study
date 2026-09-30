@@ -6,6 +6,7 @@ phase: 보관
 parent: 
 minutes: 3
 updated: 2026-09-30
+experience: reference
 classification: 필요할 때
 ---
 ## 왜 알아야 하는가
