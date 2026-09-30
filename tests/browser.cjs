@@ -30,7 +30,29 @@ const root=path.resolve(__dirname,'..');
    await page.goto('http://127.0.0.1:8765/#overview');
    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
    await page.screenshot({path:path.join(root,'artifacts/tax-guide-mobile.png'),fullPage:true});
+
+   await page.setViewportSize({width:1440,height:1000});
+   await page.goto('http://127.0.0.1:8765/chart/');
+   assert.match(await page.locator('h1').textContent(),/차트를 외우지 말고/);
+   assert.ok(await page.locator('a[href="beginner/candlestick.html"]').count()>0);
+
+   await page.goto('http://127.0.0.1:8765/chart/beginner/candlestick.html');
+   await page.waitForFunction(()=>document.querySelector('#candleSvg')?.children.length>0);
+   await page.waitForFunction(()=>document.querySelector('#marketChart')?.children.length>0,{timeout:7000});
+   assert.equal(await page.locator('.preset').count(),5);
+   await page.locator('[data-preset="lower"]').click();
+   assert.match(await page.locator('#meaningTitle').textContent(),/아래/);
+   await page.locator('.quiz .option[data-correct="true"]').first().click();
+   assert.ok(await page.locator('.quiz-feedback.show').first().isVisible());
+   await page.screenshot({path:path.join(root,'artifacts/chart-candlestick-desktop.png'),fullPage:true});
+
+   await page.setViewportSize({width:375,height:850});
+   await page.goto('http://127.0.0.1:8765/chart/beginner/candlestick.html');
+   await page.waitForFunction(()=>document.querySelector('#candleSvg')?.children.length>0);
+   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
+   await page.screenshot({path:path.join(root,'artifacts/chart-candlestick-mobile.png'),fullPage:true});
+
    assert.deepEqual(errors,[]);
-   console.log('PASS: canonical 19-section guide, desktop/mobile, calculator, quiz and FAQ');
+   console.log('PASS: finance guide + interactive chart learning, desktop/mobile');
  } finally { if(browser) await browser.close(); server.kill(); }
 })().catch(e=>{console.error(e);process.exitCode=1});
