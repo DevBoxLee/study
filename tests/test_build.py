@@ -4,25 +4,27 @@ sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'tools'))
 from build_site import render_lesson,load_lessons
 
 class BuildTest(unittest.TestCase):
-    def test_flexible_widgets_render(self):
-        self.assertIn('data-widget="money-story"',render_lesson('## 사례\n\n:::money-story'))
+    def test_tax_guide_widgets_render(self):
+        self.assertIn('data-widget="account-map"',render_lesson(':::account-map'))
+        self.assertIn('data-widget="pension"',render_lesson(':::pension'))
+        self.assertIn('data-widget="tax-compound-compare"',render_lesson(':::tax-compound-compare'))
         self.assertIn('data-widget="account-quiz"',render_lesson(':::account-quiz'))
-        self.assertIn('data-widget="isa-bridge"',render_lesson(':::isa-bridge'))
     def test_unknown_widget_is_rejected(self):
         with self.assertRaises(ValueError):
             render_lesson(':::unknown')
-    def test_lessons_have_experience(self):
+    def test_exact_19_sections(self):
         lessons=load_lessons()
-        self.assertEqual(len(lessons),14)
-        self.assertEqual(len({x['id'] for x in lessons}),14)
-        self.assertTrue(all(x.get('experience') for x in lessons))
-        self.assertEqual(next(x for x in lessons if x['id']=='01-money')['experience'],'scenario')
-        self.assertEqual(next(x for x in lessons if x['id']=='06-isa')['parent'],'06-accounts')
-        self.assertEqual(next(x for x in lessons if x['id']=='06-faq')['parent'],'06-accounts')
-    def test_fixed_ten_heading_pattern_removed(self):
-        html=render_lesson('## 사례부터 보기\n\n본문입니다.\n\n:::risk-lab')
-        self.assertIn('사례부터 보기',html)
-        self.assertIn('data-widget="risk-lab"',html)
+        self.assertEqual(len(lessons),19)
+        self.assertEqual([x['id'] for x in lessons],[f'{i:02d}-'+[
+            'overview','tax','pension','irp','isa','compare','compound','bridge','purpose',
+            'priority','couple','portfolio','mistakes','early','withdraw','faq','summary','onepage','sources'
+        ][i-1] for i in range(1,20)])
+        self.assertTrue(all(x['phase']=='절세계좌' for x in lessons))
+        self.assertTrue(all(not x.get('parent') for x in lessons))
+    def test_removed_curriculum_is_not_loaded(self):
+        ids={x['id'] for x in load_lessons()}
+        for old in ['00-principles','01-money','02-horizon','03-risk','04-allocation','05-etf','06-accounts','07-policy','99-later']:
+            self.assertNotIn(old,ids)
 
 if __name__=='__main__':
     unittest.main()
