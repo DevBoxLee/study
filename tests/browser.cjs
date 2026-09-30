@@ -24,9 +24,9 @@ try{
  await route('03-risk');assert.match(await page.locator('[data-output]').textContent(),/2,400만원/);
  await route('04-allocation');assert.match(await page.locator('[data-output]').textContent(),/4,080만원/);
  await route('05-etf');assert.equal(await page.locator('.anatomy').count(),1);
- await route('06-accounts');assert.equal(await page.locator('.account').count(),3);assert.equal(await page.locator('.quiz').count(),4);
+ await route('06-accounts');assert.equal(await page.locator('.account').count(),3);assert.equal(await page.locator('.quiz').count(),16);assert.equal(await page.locator('.concept-grid section').count(),6);assert.match(await page.locator('[data-bridge]').textContent(),/300만원/);assert.equal(await page.locator('.split-scenario section').count(),2);assert.equal(await page.locator('.rate-ladder').count(),2);
  await route('06-irp');assert.match(await page.locator('[data-allowance]').textContent(),/15.4만원/);
- await route('06-isa');assert.match(await page.locator('[data-output]').textContent(),/29.7만원/);await page.locator('[name=allowance]').selectOption('400');assert.match(await page.locator('[data-output]').textContent(),/9.9만원/);
+ await route('06-isa');assert.match(await page.locator('[data-output]').textContent(),/29.7만원/);await page.locator('[name=allowance]').selectOption('400');assert.match(await page.locator('[data-output]').textContent(),/9.9만원/);await route('06-faq');assert.match(await page.locator('#article').textContent(),/33\. 세 계좌를 모두 만들어야 하는가/);
  await route('07-policy');assert.match(await page.locator('[data-rebalance]').textContent(),/88.0%/);await page.screenshot({path:path.join(root,'artifacts/policy.png'),fullPage:true});
  await page.locator('#complete').check();await page.reload();await page.waitForFunction(()=>document.title.startsWith('07.'));assert.equal(await page.locator('#complete').isChecked(),true);
  await page.locator('#search').fill('손익통산');assert.ok(await page.locator('#tree a').count()>0);await page.locator('#search').fill('없는금융주제123');assert.equal(await page.locator('#tree a').count(),0);await page.locator('#search').fill('');
