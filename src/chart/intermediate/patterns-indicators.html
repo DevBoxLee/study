@@ -1,0 +1,39 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>패턴 · RSI · MACD — 우리집 차트 공부</title><link rel="stylesheet" href="../assets/chart.css"><script src="../assets/level-lab.js" defer></script></head><body><div class="progress"><span id="progressBar"></span></div><div class="layout">
+<aside class="sidebar">
+<a class="back-home" href="../../index.html">← 우리집 금융공부로 돌아가기</a>
+<div class="brand"><small>PRICE ACTION LAB</small>차트 공부</div>
+<div class="side-copy">초급은 읽는 법, 중급은 진입 판단, 고급은 손실까지 포함한 전략 설계를 다룹니다.</div>
+<nav>
+<details class="nav-group"><summary>00. 시작하기 <span>2</span></summary><div class="nav-items"><a class="nav-link" href="../index.html">학습 로드맵</a><span class="nav-disabled">차트의 역할</span></div></details>
+<details class="nav-group" ><summary>01. 초급 · 읽는다 <span>7</span></summary><div class="nav-items">
+<a class="nav-link" href="../beginner/candlestick.html">02 캔들 이해</a><a class="nav-link" href="../beginner/volume.html">03 거래량 이해</a><a class="nav-link" href="../beginner/trend-structure.html">04 추세와 고점·저점</a><a class="nav-link" href="../beginner/support-resistance.html">05 지지와 저항</a><a class="nav-link" href="../beginner/moving-average.html">06 이동평균선</a><a class="nav-link" href="../beginner/beginner-practice.html">07 초급 실전</a>
+</div></details>
+<details class="nav-group" open><summary>02. 중급 · 판단한다 <span>6</span></summary><div class="nav-items">
+<a class="nav-link " href="../intermediate/market-structure.html">01 시장구조와 추세전환</a>
+<a class="nav-link " href="../intermediate/breakout.html">02 돌파와 이탈</a>
+<a class="nav-link " href="../intermediate/pullback.html">03 눌림목과 되돌림</a>
+<a class="nav-link " href="../intermediate/volume-confirmation.html">04 거래량 검증</a>
+<a class="nav-link active" href="../intermediate/patterns-indicators.html">05 패턴 · RSI/MACD</a>
+<a class="nav-link " href="../intermediate/scaling-exits.html">06 분할매수 · 매도</a>
+</div></details>
+<details class="nav-group" ><summary>03. 고급 · 전략을 만든다 <span>6</span></summary><div class="nav-items">
+<a class="nav-link" href="../advanced/multi-timeframe.html">01 멀티 타임프레임</a>
+<a class="nav-link" href="../advanced/failed-signals.html">02 실패 신호</a>
+<a class="nav-link" href="../advanced/volatility-atr.html">03 변동성 · ATR</a>
+<a class="nav-link" href="../advanced/risk-reward-stop.html">04 손절 · Risk/Reward</a>
+<a class="nav-link" href="../advanced/position-sizing.html">05 포지션 사이징</a>
+<a class="nav-link" href="../advanced/swing-review.html">06 스윙 · 복기</a>
+</div></details>
+<details class="nav-group"><summary>04. 실전 연구소 <span>5</span></summary><div class="nav-items"><span class="nav-disabled">ETF · 개별주 · Bitcoin · Altcoin · 판단 훈련</span></div></details>
+</nav>
+<div class="nav-kicker"><b>중급 목표</b><br>좋아 보이는 차트와 실제 진입 가능한 차트를 구분합니다.</div>
+</aside><main><header class="hero level-hero"><div class="hero-grid"><div><div class="eyebrow">INTERMEDIATE 05 · PATTERNS & INDICATORS</div><h1>패턴 · RSI · MACD</h1><p class="lead">패턴 이름과 보조지표는 가격 구조를 더 짧게 읽는 도구입니다. 가격보다 앞에 두지 않습니다.</p><div class="badge-row"><span class="badge green">필요</span><span class="badge blue">패턴 백과사전 지양</span><span class="badge amber">보조지표</span></div><div class="lesson-index"><a href="market-structure.html">시장구조</a><a href="breakout.html">돌파</a><a href="pullback.html">눌림목</a><a href="volume-confirmation.html">거래량 검증</a><a href="patterns-indicators.html">패턴·RSI/MACD</a><a href="scaling-exits.html">분할매수·매도</a></div></div><div class="hero-card"><div class="metric"><span>패턴</span><b>구조의 별명</b></div><div class="metric"><span>RSI</span><b>모멘텀</b></div><div class="metric"><span>MACD</span><b>추세·속도</b></div><div class="metric"><span>원칙</span><b>가격 우선</b></div></div></div></header>
+<section class="section"><div class="eyebrow">01 · PATTERNS</div><h2>패턴은 그림이 아니라 시장구조를 짧게 부르는 이름</h2><div class="pattern-board">
+<div class="pattern-card"><svg viewBox="0 0 220 110"><polyline points="10,90 55,30 90,88 135,32 175,82 210,95" fill="none" stroke="#2563eb" stroke-width="5"/></svg><b>더블탑</b><span class="micro">비슷한 고점에서 두 번 막힌 구조. 넥라인 이탈 전에는 확정 패턴으로 보지 않습니다.</span></div>
+<div class="pattern-card"><svg viewBox="0 0 220 110"><polyline points="10,25 55,86 90,30 135,84 175,32 210,18" fill="none" stroke="#059669" stroke-width="5"/></svg><b>더블바텀</b><span class="micro">비슷한 저점에서 두 번 반응. 중간 고점 돌파와 유지가 중요합니다.</span></div>
+<div class="pattern-card"><svg viewBox="0 0 220 110"><polyline points="10,80 55,30 90,70 125,40 160,60 205,50" fill="none" stroke="#7c3aed" stroke-width="5"/><line x1="20" y1="92" x2="205" y2="52" stroke="#94a3b8" stroke-dasharray="6 5"/></svg><b>수렴·삼각형</b><span class="micro">변동폭이 줄어드는 압축. 어느 방향으로 실제 이탈·유지하는지가 핵심.</span></div>
+</div><div class="callout"><b>패턴 이름보다 조건:</b> 이전 추세, 경계선, 거래량, 돌파 후 유지 여부를 설명할 수 있어야 합니다.</div></section>
+<section class="section"><div class="eyebrow">02 · RSI / MACD</div><h2>보조지표는 가격 뒤에 붙인다</h2><div class="scenario-shell"><div class="scenario-head"><b>가격 + RSI + MACD</b><div class="scenario-actions"><button class="active" data-indicator="trend">추세 확인</button><button data-indicator="divergence">다이버전스</button></div></div><div class="scenario-canvas" id="indicatorScene"></div><div class="scenario-foot"><strong id="indicatorTitle"></strong><p id="indicatorText"></p></div></div></section>
+<section class="section"><div class="eyebrow">03 · RSI</div><h2>RSI 70 = 매도, 30 = 매수로 쓰지 않는다</h2><div class="grid2"><div class="warning-card"><b>강한 상승추세</b><p>RSI가 70 이상인 상태가 오래 지속될 수 있습니다. 과매수는 즉시 하락 명령이 아닙니다.</p></div><div class="warning-card"><b>강한 하락추세</b><p>RSI가 30 이하에 오래 머물 수 있습니다. 과매도만으로 바닥을 확정할 수 없습니다.</p></div></div></section>
+<section class="section"><div class="eyebrow">04 · MACD</div><h2>MACD는 추세와 모멘텀의 변화 속도를 본다</h2><p>선 교차 자체보다 0선 위·아래 위치, 히스토그램 변화, 가격 구조와의 일치 여부를 함께 봅니다. 횡보에서는 잦은 교차가 발생할 수 있습니다.</p></section>
+<section class="section"><div class="eyebrow">05 · QUIZ</div><div class="quiz" data-feedback="다이버전스는 모멘텀 둔화를 보여주는 경고일 뿐입니다. 실제 가격 구조가 깨지는지 확인해야 합니다."><div class="q">가격은 신고가인데 RSI 고점은 낮아졌다. 바로 매도해야 할까?</div><div class="options"><button class="option" data-correct="false">즉시 전량 매도</button><button class="option" data-correct="true">모멘텀 둔화 경고로 보고 가격 구조 이탈을 추가 확인</button></div><div class="quiz-feedback"></div></div></section><section class="section"><div class="next-card"><div><div class="eyebrow">NEXT</div><h2 style="margin:4px 0 7px">06 · 분할매수 · 매도</h2></div><a href="scaling-exits.html">다음 학습 →</a></div></section><footer class="footer">교육용 자료입니다. 특정 자산의 매수·매도를 권유하지 않습니다.</footer></main></div></body></html>
