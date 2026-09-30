@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="ko">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>지지와 저항 — 우리집 차트 공부</title>
+<link rel="stylesheet" href="../assets/chart.css"><script src="../assets/foundations.js" defer></script></head>
+<body>
+<div class="progress"><span id="progressBar"></span></div>
+<div class="layout">
+<aside class="sidebar">
+<a class="back-home" href="../../index.html">← 우리집 금융공부로 돌아가기</a>
+<div class="brand"><small>PRICE ACTION LAB</small>차트 공부</div>
+<div class="side-copy">지지와 저항은 미래를 맞히는 선이 아니라, 가격이 반복해서 반응한 구간을 표시하는 도구입니다.</div>
+<nav>
+<details class="nav-group"><summary>00. 시작하기 <span>2</span></summary><div class="nav-items"><a class="nav-link" href="../index.html">학습 로드맵</a><span class="nav-disabled">차트의 역할</span></div></details>
+<details class="nav-group" open><summary>01. 초급 · 읽는다 <span>7</span></summary><div class="nav-items"><span class="nav-disabled">01 차트의 기본 구조</span><a class="nav-link" href="candlestick.html">02 캔들 이해</a><a class="nav-link" href="volume.html">03 거래량 이해</a><a class="nav-link" href="trend-structure.html">04 추세와 고점·저점</a><a class="nav-link active" href="support-resistance.html">05 지지와 저항</a><span class="nav-disabled">06 이동평균선</span><span class="nav-disabled">07 초급 실전</span></div></details>
+<details class="nav-group"><summary>02. 중급 · 판단한다 <span>9</span></summary><div class="nav-items"><span class="nav-disabled">시장구조 · 돌파 · 눌림목</span><span class="nav-disabled">차트 패턴 · RSI/MACD</span><span class="nav-disabled">매수 · 매도 판단</span></div></details>
+<details class="nav-group"><summary>03. 고급 · 전략을 만든다 <span>9</span></summary><div class="nav-items"><span class="nav-disabled">멀티 타임프레임</span><span class="nav-disabled">리스크 · 포지션 사이징</span><span class="nav-disabled">스윙 · 복기</span></div></details>
+</nav>
+<div class="nav-kicker"><b>이 페이지 목표</b><br>선 하나에 집착하지 않고 반복 반응이 나온 가격대를 구간으로 표시합니다.</div>
+</aside>
+<main>
+<header class="hero"><div class="hero-grid"><div><div class="eyebrow">BEGINNER 05 · SUPPORT & RESISTANCE</div><h1>지지·저항은<br><span style="color:#2563eb">선보다 구간</span>으로 본다.</h1><p class="lead">가격은 정확히 같은 숫자에서만 멈추지 않습니다. 여러 번 반응한 가격대를 범위로 잡고, 돌파·이탈·재테스트가 어떻게 이어지는지 확인합니다.</p><div class="badge-row"><span class="badge green">필수</span><span class="badge blue">구간 사고</span><span class="badge amber">돌파 확정 금지</span></div></div><div class="hero-card"><div class="metric"><span>지지</span><b>아래에서 반응</b></div><div class="metric"><span>저항</span><b>위에서 반응</b></div><div class="metric"><span>핵심</span><b>반복 · 돌파 · 재테스트</b></div><div class="metric"><span>주의</span><b>절대선 아님</b></div></div></div></header>
+
+<section class="section" id="concept"><div class="eyebrow">01 · CORE IDEA</div><h2>지지와 저항은 가격이 기억하는 반응 구간</h2>
+<div class="zone-demo"><div class="card"><h3>지지 · Support</h3><div class="zone-band"></div><p>가격이 내려왔을 때 매수 반응이 반복되어 하락이 멈추거나 둔화된 영역입니다.</p><p class="micro">“여기서 반드시 오른다”가 아니라 “이 구간에서 반응이 있었으니 다시 확인한다”가 정확한 표현입니다.</p></div><div class="zone-notes"><div class="zone-note"><b>반복 횟수</b><span class="micro">한 번보다 여러 번 반응한 가격대가 더 눈에 띕니다.</span></div><div class="zone-note"><b>최근성</b><span class="micro">아주 오래된 구간보다 최근 시장 참여자가 본 가격대가 더 직접적일 수 있습니다.</span></div><div class="zone-note"><b>거래량</b><span class="micro">돌파·이탈 때 거래량이 늘었는지 함께 확인합니다.</span></div></div></div>
+<div class="callout"><b>핵심:</b> 지지·저항은 “매수 가격표”가 아니라 <b>의사결정이 집중될 가능성이 있는 관찰 구간</b>입니다.</div></section>
+
+<section class="section" id="interactive"><div class="eyebrow">02 · INTERACTIVE ZONES</div><h2>같은 구간도 역할이 바뀔 수 있다</h2>
+<div class="scene-shell"><div class="scene-toolbar"><div><b>지지·저항 시뮬레이션</b><div class="micro">파란 띠는 한 줄이 아닌 가격 구간입니다.</div></div><div class="scenario-row"><button class="scenario-btn active" data-sr="support">지지 반응</button><button class="scenario-btn" data-sr="resistance">저항 반응</button><button class="scenario-btn" data-sr="flip">역할 전환</button><button class="scenario-btn" data-sr="falsebreak">가짜 돌파</button></div></div><div class="scene-stage" id="srScene"></div><div class="scene-caption"><strong id="srTitle"></strong><p id="srText"></p></div></div></section>
+
+<section class="section" id="zone"><div class="eyebrow">03 · ZONE, NOT PIXEL</div><h2>왜 정확한 한 줄보다 구간이 현실적인가</h2>
+<div class="grid3"><div class="card"><h3>주문은 한 가격에만 몰리지 않는다</h3><p class="micro">시장 참여자의 평균단가·손익분기·대기 주문은 여러 가격에 분산됩니다.</p></div><div class="card"><h3>변동성 때문에 약간씩 넘나든다</h3><p class="micro">꼬리로 구간을 살짝 뚫었다가 되돌아오는 움직임이 흔합니다.</p></div><div class="card"><h3>시간축에 따라 폭이 달라진다</h3><p class="micro">주봉에서 보는 구간과 5분봉에서 보는 구간의 폭은 같을 필요가 없습니다.</p></div></div>
+<div class="misconception" style="margin-top:16px"><div class="wrong"><h3>✕ 픽셀 단위 사고</h3><p>“112.00원을 1틱 넘었으니 돌파 확정.”</p></div><div class="vs">VS</div><div class="right"><h3>✓ 구간 사고</h3><p>“111~114 저항 구간 위에서 종가가 유지되고, 거래량과 재테스트가 확인되는가?”</p></div></div></section>
+
+<section class="section" id="flip"><div class="eyebrow">04 · ROLE REVERSAL</div><h2>저항이 지지로, 지지가 저항으로 바뀔 수 있다</h2>
+<div class="step-flow"><div class="step-node">기존 저항</div><div class="step-arrow">→</div><div class="step-node">돌파</div><div class="step-arrow">→</div><div class="step-node">되돌림</div><div class="step-arrow">→</div><div class="step-node">구간 위 반응</div><div class="step-arrow">→</div><div class="step-node">지지 후보</div></div>
+<div class="callout good"><b>왜 보나:</b> 돌파 직후 쫓아가기보다 되돌림에서 이전 저항 구간이 지지로 작동하는지 보면 진입 기준과 손절 기준을 더 구체화할 수 있습니다.</div>
+<div class="callout warn"><b>단, 공식이 아닙니다.</b> 역할 전환은 자주 관찰되는 구조이지 반드시 발생하는 법칙이 아닙니다.</div></section>
+
+<section class="section" id="breakout"><div class="eyebrow">05 · BREAKOUT CHECK</div><h2>돌파는 “넘었다”보다 “유지했다”가 중요하다</h2>
+<div class="rule-strip"><div class="rule-chip"><b>① 종가</b><span class="micro">구간 밖에서 마감했는가?</span></div><div class="rule-chip"><b>② 거래량</b><span class="micro">평소보다 참여가 늘었는가?</span></div><div class="rule-chip"><b>③ 재테스트</b><span class="micro">되돌림에서 구간을 다시 지키는가?</span></div></div>
+<div class="practice-box" style="margin-top:16px"><h3>예시</h3><div style="overflow:auto"><table class="compare-table"><thead><tr><th>단계</th><th>가격 행동</th><th>판단</th></tr></thead><tbody><tr><td>1</td><td>111~114 저항 구간 접근</td><td>관찰</td></tr><tr><td>2</td><td>116 종가 + 거래량 2배</td><td>돌파 후보</td></tr><tr><td>3</td><td>113까지 되돌림 후 115 마감</td><td>역할 전환 여부 확인</td></tr><tr><td>4</td><td>이후 직전 고점 재돌파</td><td>구조 확인 강도 증가</td></tr></tbody></table></div></div></section>
+
+<section class="section" id="priority"><div class="eyebrow">06 · WHICH LEVELS MATTER</div><h2>차트에 선을 너무 많이 긋지 않는다</h2>
+<div class="grid2"><div class="card"><h3>우선 표시할 구간</h3><p>최근의 뚜렷한 고점·저점, 여러 번 반응한 범위, 큰 거래량이 동반된 돌파·이탈 영역.</p></div><div class="card"><h3>후순위 구간</h3><p>오래전에 한 번만 반응한 가격, 현재 가격에서 너무 먼 작은 흔들림, 비슷한 선을 여러 개 겹쳐 그은 영역.</p></div></div>
+<div class="callout bad"><b>선이 많아질수록 분석이 정확해지는 게 아닙니다.</b> 어느 가격에서든 “선이 있었네”라고 사후 설명할 수 있게 되면 판단 도구로서 가치가 떨어집니다.</div></section>
+
+<section class="section" id="quiz"><div class="eyebrow">07 · CHECK YOURSELF</div><h2>3분 확인 문제</h2>
+<div class="quiz" data-feedback="실전 가격은 정확한 한 틱에서만 반응하지 않으므로 반복 반응이 나온 범위를 구간으로 보는 편이 유용합니다."><div class="q">Q1. 지지와 저항을 표시할 때 가장 적절한 방식은?</div><div class="options"><button class="option" data-correct="false">① 정확한 숫자 한 줄만 고집한다</button><button class="option" data-correct="true">② 반복 반응이 나온 가격대를 구간으로 본다</button></div><div class="quiz-feedback"></div></div>
+<div class="quiz" data-feedback="구간을 잠깐 넘은 것만으로는 부족합니다. 종가 유지, 거래량, 이후 재테스트를 함께 봅니다."><div class="q">Q2. 저항을 장중 잠깐 넘었다가 종가에 다시 아래로 내려왔다. 가장 적절한 판단은?</div><div class="options"><button class="option" data-correct="false">① 완전한 돌파 확정</button><button class="option" data-correct="true">② 가짜 돌파 가능성을 포함해 추가 확인</button></div><div class="quiz-feedback"></div></div>
+<div class="quiz" data-feedback="기존 저항을 돌파한 뒤 되돌림에서 같은 영역 위에서 반응하면 지지 후보로 역할이 바뀌는지 관찰할 수 있습니다."><div class="q">Q3. 저항 돌파 후 되돌림에서 가장 먼저 볼 것은?</div><div class="options"><button class="option" data-correct="true">① 이전 저항 구간이 지지로 작동하는지</button><button class="option" data-correct="false">② 캔들 색 하나만 보기</button></div><div class="quiz-feedback"></div></div></section>
+
+<section class="section" id="use"><div class="eyebrow">08 · USE IT</div><h2>분할매수와 연결하면 기준이 생긴다</h2>
+<div class="lesson-summary"><div class="summary-card"><b>1차 관찰</b><span class="micro">주요 지지구간 접근</span></div><div class="summary-card"><b>반응 확인</b><span class="micro">캔들 + 거래량 + 구조 유지</span></div><div class="summary-card"><b>무효화 기준</b><span class="micro">어느 구간 이탈 시 판단을 버릴지 사전 정의</span></div></div>
+<div class="callout good"><b>실전 문장:</b> “일봉 상승 구조에서 108~111 지지구간으로 조정이 왔다. 거래량이 줄고 아랫꼬리 반응이 나온 뒤 직전 단기 고점을 넘는지 확인한다. 지지구간 종가 이탈 시 가설을 다시 본다.”</div></section>
+
+<section class="section"><div class="next-card"><div><div class="eyebrow">NEXT</div><h2 style="margin:4px 0 7px">다음은 이동평균선</h2><p style="margin:0;color:#475467">가격 구조와 지지·저항을 먼저 이해한 뒤, 이동평균선을 <b>추세를 보조하는 도구</b>로 붙입니다.</p></div><a href="../index.html">로드맵 보기 →</a></div></section>
+<footer class="footer">교육용 자료입니다. 특정 자산의 매수·매도를 권유하지 않습니다.</footer>
+</main></div></body></html>
