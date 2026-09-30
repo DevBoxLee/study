@@ -120,7 +120,65 @@ const root=path.resolve(__dirname,'..');
    }
    await page.screenshot({path:path.join(root,'artifacts/chart-beginner-practice-mobile.png'),fullPage:true});
 
+   await page.setViewportSize({width:1440,height:1000});
+   await page.goto('http://127.0.0.1:8765/chart/');
+   assert.ok(await page.locator('a[href="intermediate/market-structure.html"]').count()>0);
+   assert.ok(await page.locator('a[href="advanced/multi-timeframe.html"]').count()>0);
+
+   await page.goto('http://127.0.0.1:8765/chart/intermediate/market-structure.html');
+   await page.waitForFunction(()=>document.querySelector('#scenarioCanvas')?.children.length>0);
+   await page.locator('[data-scenario="shift"]').click();
+   assert.match(await page.locator('#scenarioTitle').textContent(),/전환 후보/);
+
+   await page.goto('http://127.0.0.1:8765/chart/intermediate/patterns-indicators.html');
+   await page.waitForFunction(()=>document.querySelector('#indicatorScene')?.children.length>0);
+   await page.locator('[data-indicator="divergence"]').click();
+   assert.match(await page.locator('#indicatorTitle').textContent(),/모멘텀/);
+
+   await page.goto('http://127.0.0.1:8765/chart/intermediate/scaling-exits.html');
+   await page.locator('#scaleAmount').fill('20000000');
+   assert.match(await page.locator('#scale1').textContent(),/8,000,000/);
+   await page.screenshot({path:path.join(root,'artifacts/chart-intermediate-desktop.png'),fullPage:true});
+
+   await page.goto('http://127.0.0.1:8765/chart/advanced/multi-timeframe.html');
+   await page.waitForFunction(()=>document.querySelector('#tfWeekly')?.children.length>0);
+   assert.ok(await page.locator('#tfDaily svg').count()>0);
+
+   await page.goto('http://127.0.0.1:8765/chart/advanced/failed-signals.html');
+   await page.waitForFunction(()=>document.querySelector('#scenarioCanvas')?.children.length>0);
+   await page.locator('[data-scenario="beartrap"]').click();
+   assert.match(await page.locator('#scenarioTitle').textContent(),/Bear Trap/);
+
+   await page.goto('http://127.0.0.1:8765/chart/advanced/volatility-atr.html');
+   assert.match(await page.locator('#atrStop').textContent(),/94\.00/);
+   assert.match(await page.locator('#atrPct').textContent(),/6\.00%/);
+
+   await page.goto('http://127.0.0.1:8765/chart/advanced/risk-reward-stop.html');
+   assert.match(await page.locator('#rrRatio').textContent(),/1 : 3\.00/);
+
+   await page.goto('http://127.0.0.1:8765/chart/advanced/position-sizing.html');
+   assert.match(await page.locator('#posBudget').textContent(),/100,000/);
+   assert.match(await page.locator('#posQty').textContent(),/20,000/);
+
+   await page.goto('http://127.0.0.1:8765/chart/advanced/swing-review.html');
+   assert.equal(await page.locator('.review-check').count(),7);
+   await page.locator('.review-check').first().check();
+   assert.match(await page.locator('#reviewScore').textContent(),/1\/7/);
+   await page.screenshot({path:path.join(root,'artifacts/chart-advanced-review-desktop.png'),fullPage:true});
+
+   await page.setViewportSize({width:375,height:850});
+   const levelPages=[
+     'intermediate/market-structure.html','intermediate/breakout.html','intermediate/pullback.html','intermediate/volume-confirmation.html','intermediate/patterns-indicators.html','intermediate/scaling-exits.html',
+     'advanced/multi-timeframe.html','advanced/failed-signals.html','advanced/volatility-atr.html','advanced/risk-reward-stop.html','advanced/position-sizing.html','advanced/swing-review.html'
+   ];
+   for(const p of levelPages){
+     await page.goto('http://127.0.0.1:8765/chart/'+p);
+     const ov=await page.evaluate(()=>({overflow:document.documentElement.scrollWidth>innerWidth,scrollWidth:document.documentElement.scrollWidth,innerWidth}));
+     assert.equal(ov.overflow,false,p+' mobile overflow '+JSON.stringify(ov));
+   }
+   await page.screenshot({path:path.join(root,'artifacts/chart-advanced-mobile.png'),fullPage:true});
+
    assert.deepEqual(errors,[]);
-   console.log('PASS: finance guide + 6 interactive chart lessons, desktop/mobile');
+   console.log('PASS: finance guide + complete beginner/intermediate/advanced chart curriculum, desktop/mobile');
  } finally { if(browser) await browser.close(); server.kill(); }
 })().catch(e=>{console.error(e);process.exitCode=1});

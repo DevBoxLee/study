@@ -1,0 +1,35 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>거래량 검증 — 우리집 차트 공부</title><link rel="stylesheet" href="../assets/chart.css"><script src="../assets/level-lab.js" defer></script></head><body><div class="progress"><span id="progressBar"></span></div><div class="layout">
+<aside class="sidebar">
+<a class="back-home" href="../../index.html">← 우리집 금융공부로 돌아가기</a>
+<div class="brand"><small>PRICE ACTION LAB</small>차트 공부</div>
+<div class="side-copy">초급은 읽는 법, 중급은 진입 판단, 고급은 손실까지 포함한 전략 설계를 다룹니다.</div>
+<nav>
+<details class="nav-group"><summary>00. 시작하기 <span>2</span></summary><div class="nav-items"><a class="nav-link" href="../index.html">학습 로드맵</a><span class="nav-disabled">차트의 역할</span></div></details>
+<details class="nav-group" ><summary>01. 초급 · 읽는다 <span>7</span></summary><div class="nav-items">
+<a class="nav-link" href="../beginner/candlestick.html">02 캔들 이해</a><a class="nav-link" href="../beginner/volume.html">03 거래량 이해</a><a class="nav-link" href="../beginner/trend-structure.html">04 추세와 고점·저점</a><a class="nav-link" href="../beginner/support-resistance.html">05 지지와 저항</a><a class="nav-link" href="../beginner/moving-average.html">06 이동평균선</a><a class="nav-link" href="../beginner/beginner-practice.html">07 초급 실전</a>
+</div></details>
+<details class="nav-group" open><summary>02. 중급 · 판단한다 <span>6</span></summary><div class="nav-items">
+<a class="nav-link " href="../intermediate/market-structure.html">01 시장구조와 추세전환</a>
+<a class="nav-link " href="../intermediate/breakout.html">02 돌파와 이탈</a>
+<a class="nav-link " href="../intermediate/pullback.html">03 눌림목과 되돌림</a>
+<a class="nav-link active" href="../intermediate/volume-confirmation.html">04 거래량 검증</a>
+<a class="nav-link " href="../intermediate/patterns-indicators.html">05 패턴 · RSI/MACD</a>
+<a class="nav-link " href="../intermediate/scaling-exits.html">06 분할매수 · 매도</a>
+</div></details>
+<details class="nav-group" ><summary>03. 고급 · 전략을 만든다 <span>6</span></summary><div class="nav-items">
+<a class="nav-link" href="../advanced/multi-timeframe.html">01 멀티 타임프레임</a>
+<a class="nav-link" href="../advanced/failed-signals.html">02 실패 신호</a>
+<a class="nav-link" href="../advanced/volatility-atr.html">03 변동성 · ATR</a>
+<a class="nav-link" href="../advanced/risk-reward-stop.html">04 손절 · Risk/Reward</a>
+<a class="nav-link" href="../advanced/position-sizing.html">05 포지션 사이징</a>
+<a class="nav-link" href="../advanced/swing-review.html">06 스윙 · 복기</a>
+</div></details>
+<details class="nav-group"><summary>04. 실전 연구소 <span>5</span></summary><div class="nav-items"><span class="nav-disabled">ETF · 개별주 · Bitcoin · Altcoin · 판단 훈련</span></div></details>
+</nav>
+<div class="nav-kicker"><b>중급 목표</b><br>좋아 보이는 차트와 실제 진입 가능한 차트를 구분합니다.</div>
+</aside><main><header class="hero level-hero"><div class="hero-grid"><div><div class="eyebrow">INTERMEDIATE 04 · VOLUME CONFIRMATION</div><h1>거래량 검증</h1><p class="lead">중급에서는 거래량을 단독 신호가 아니라 돌파·이탈·눌림의 신뢰도를 검증하는 증거로 사용합니다.</p><div class="badge-row"><span class="badge green">필수</span><span class="badge blue">상대 거래량</span><span class="badge amber">가격과 결합</span></div><div class="lesson-index"><a href="market-structure.html">시장구조</a><a href="breakout.html">돌파</a><a href="pullback.html">눌림목</a><a href="volume-confirmation.html">거래량 검증</a><a href="patterns-indicators.html">패턴·RSI/MACD</a><a href="scaling-exits.html">분할매수·매도</a></div></div><div class="hero-card"><div class="metric"><span>질문</span><b>움직임에 힘이 실렸나?</b></div><div class="metric"><span>비교</span><b>최근 평균</b></div><div class="metric"><span>주의</span><b>방향은 가격이 결정</b></div><div class="metric"><span>코인</span><b>거래소별 차이</b></div></div></div></header>
+<section class="section"><div class="eyebrow">01 · CONFIRMATION</div><h2>중급에서는 거래량을 “움직임의 신뢰도” 확인에 쓴다</h2><p class="section-lead">초급에서 상대 거래량을 읽었다면, 이제 돌파·이탈·눌림의 가격 행동과 거래량이 서로 맞는지 봅니다.</p><div class="evidence-matrix" id="volumeGrade"></div></section>
+<section class="section"><div class="eyebrow">02 · EFFORT VS RESULT</div><h2>거래량은 큰데 가격이 못 움직이면 무엇을 뜻할까</h2><div class="grid2"><div class="card"><h3>큰 거래량 + 큰 가격 이동</h3><p>많은 참여가 실제 방향성 움직임으로 연결됐습니다. 돌파/이탈 확인 강도가 높아질 수 있습니다.</p></div><div class="card"><h3>큰 거래량 + 작은 가격 이동</h3><p>강한 매수와 매도가 충돌했을 수 있습니다. 특히 주요 고점·저점에서는 소화·분배·흡수 가능성을 추가 확인합니다.</p></div></div><div class="callout warn"><b>거래량 급증 자체는 방향을 말해주지 않습니다.</b> 반드시 가격이 어디에서 어떻게 끝났는지 함께 봅니다.</div></section>
+<section class="section"><div class="eyebrow">03 · EXHAUSTION</div><h2>추세 후반의 거래량 폭증은 “마지막 가속”일 수도 있다</h2><div class="concept-map"><div class="concept-node"><b>초기 돌파</b><span class="micro">새 구간 진입 + 거래량 확대는 참여 증가 확인.</span></div><div class="concept-node"><b>추세 중반</b><span class="micro">가격 구조와 거래량이 함께 유지되는지.</span></div><div class="concept-node"><b>장기 급등 후 폭증</b><span class="micro">추격 수요와 차익실현이 충돌하는 클라이맥스 가능성.</span></div></div></section>
+<section class="section"><div class="eyebrow">04 · MARKET DIFFERENCE</div><h2>거래량의 출처도 이해한다</h2><div class="grid2"><div class="card"><h3>주식·ETF</h3><p>거래소에서 집계되는 해당 상품의 거래량을 기준으로 보는 것이 일반적입니다.</p></div><div class="card"><h3>코인</h3><p>거래소마다 거래량이 다를 수 있습니다. 한 거래소 데이터만 보고 전체 시장 참여를 단정하지 않습니다.</p></div></div></section>
+<section class="section"><div class="eyebrow">05 · QUIZ</div><div class="quiz" data-feedback="가격이 저항을 넘지 못했는데 거래량만 크게 늘었다면 매수·매도 충돌 가능성이 있습니다. 위치와 종가를 먼저 봐야 합니다."><div class="q">저항 바로 아래에서 거래량이 3배 늘었지만 종가는 거의 움직이지 않았다. 가장 적절한 해석은?</div><div class="options"><button class="option" data-correct="false">거래량이 많으니 무조건 상승</button><button class="option" data-correct="true">강한 충돌 가능성으로 보고 돌파 여부를 추가 확인</button></div><div class="quiz-feedback"></div></div></section><section class="section"><div class="next-card"><div><div class="eyebrow">NEXT</div><h2 style="margin:4px 0 7px">05 · 패턴 · RSI/MACD</h2></div><a href="patterns-indicators.html">다음 학습 →</a></div></section><footer class="footer">교육용 자료입니다. 특정 자산의 매수·매도를 권유하지 않습니다.</footer></main></div></body></html>
