@@ -52,7 +52,35 @@ const root=path.resolve(__dirname,'..');
    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
    await page.screenshot({path:path.join(root,'artifacts/chart-candlestick-mobile.png'),fullPage:true});
 
+   await page.setViewportSize({width:1440,height:1000});
+   await page.goto('http://127.0.0.1:8765/chart/beginner/volume.html');
+   await page.waitForFunction(()=>document.querySelector('#volumeScene')?.children.length>0);
+   await page.locator('[data-volume="selloff"]').click();
+   assert.match(await page.locator('#volumeTitle').textContent(),/하락/);
+   await page.locator('.quiz .option[data-correct="true"]').first().click();
+   assert.ok(await page.locator('.quiz-feedback.show').first().isVisible());
+   await page.screenshot({path:path.join(root,'artifacts/chart-volume-desktop.png'),fullPage:true});
+
+   await page.goto('http://127.0.0.1:8765/chart/beginner/trend-structure.html');
+   await page.waitForFunction(()=>document.querySelector('#trendScene')?.children.length>0);
+   await page.locator('[data-trend="down"]').click();
+   assert.match(await page.locator('#trendTitle').textContent(),/하락 추세/);
+   await page.screenshot({path:path.join(root,'artifacts/chart-trend-desktop.png'),fullPage:true});
+
+   await page.goto('http://127.0.0.1:8765/chart/beginner/support-resistance.html');
+   await page.waitForFunction(()=>document.querySelector('#srScene')?.children.length>0);
+   await page.locator('[data-sr="flip"]').click();
+   assert.match(await page.locator('#srTitle').textContent(),/역할 전환/);
+   await page.screenshot({path:path.join(root,'artifacts/chart-support-desktop.png'),fullPage:true});
+
+   await page.setViewportSize({width:375,height:850});
+   for(const p of ['volume.html','trend-structure.html','support-resistance.html']){
+     await page.goto('http://127.0.0.1:8765/chart/beginner/'+p);
+     assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
+   }
+   await page.screenshot({path:path.join(root,'artifacts/chart-support-mobile.png'),fullPage:true});
+
    assert.deepEqual(errors,[]);
-   console.log('PASS: finance guide + interactive chart learning, desktop/mobile');
+   console.log('PASS: finance guide + 4 interactive chart lessons, desktop/mobile');
  } finally { if(browser) await browser.close(); server.kill(); }
 })().catch(e=>{console.error(e);process.exitCode=1});
