@@ -6,6 +6,7 @@ phase: 투자수단
 parent: 06-accounts
 minutes: 8
 updated: 2026-09-30
+experience: detail
 classification: 필수
 ---
 ## 왜 알아야 하는가

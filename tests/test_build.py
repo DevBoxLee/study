@@ -1,21 +1,26 @@
 import sys,unittest
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'tools'))
-try:
-    from build_site import render_lesson,load_lessons
-except ImportError:
-    render_lesson=load_lessons=None
+from build_site import render_lesson,load_lessons
+
 class BuildTest(unittest.TestCase):
-    def test_widgets_become_renderable_containers(self):
-        self.assertTrue(callable(render_lesson))
-        self.assertIn('data-widget="compound"',render_lesson('## 시각자료\n\n:::compound'))
+    def test_flexible_widgets_render(self):
+        self.assertIn('data-widget="money-story"',render_lesson('## 사례\n\n:::money-story'))
+        self.assertIn('data-widget="account-quiz"',render_lesson(':::account-quiz'))
     def test_unknown_widget_is_rejected(self):
-        self.assertTrue(callable(render_lesson))
-        with self.assertRaises(ValueError):render_lesson(':::unknown')
-    def test_nested_lessons_loaded_with_unique_ids(self):
-        self.assertTrue(callable(load_lessons))
+        with self.assertRaises(ValueError):
+            render_lesson(':::unknown')
+    def test_lessons_have_experience(self):
         lessons=load_lessons()
         self.assertEqual(len(lessons),13)
         self.assertEqual(len({x['id'] for x in lessons}),13)
+        self.assertTrue(all(x.get('experience') for x in lessons))
+        self.assertEqual(next(x for x in lessons if x['id']=='01-money')['experience'],'scenario')
         self.assertEqual(next(x for x in lessons if x['id']=='06-isa')['parent'],'06-accounts')
-if __name__=='__main__':unittest.main()
+    def test_fixed_ten_heading_pattern_removed(self):
+        html=render_lesson('## 사례부터 보기\n\n본문입니다.\n\n:::risk-lab')
+        self.assertIn('사례부터 보기',html)
+        self.assertIn('data-widget="risk-lab"',html)
+
+if __name__=='__main__':
+    unittest.main()
