@@ -19,7 +19,7 @@ try{
  const base='http://127.0.0.1:8765/study/';
  const route=async id=>{await page.goto(base+'#'+id);await page.waitForFunction(id=>document.querySelector('#lesson-title').textContent===JSON.parse(document.querySelector('#lesson-data').textContent).find(x=>x.id===id).title,id);};
 
- await route('01-money');assert.equal(await page.locator('.scenario').count(),2);assert.match(await page.locator('[data-output]').textContent(),/6,000만원/);await page.screenshot({path:path.join(root,'artifacts/desktop.png'),fullPage:true});
+ await route('01-money');console.log('DEBUG-ERRORS',errors);console.log('DEBUG-WIDGETS',await page.locator('[data-widget]').evaluateAll(xs=>xs.map(x=>({key:x.dataset.widget,html:x.innerHTML.slice(0,300)}))));console.log('DEBUG-ARTICLE',(await page.locator('#article').innerHTML()).slice(0,1500));assert.equal(await page.locator('.scenario').count(),2);assert.match(await page.locator('[data-output]').textContent(),/6,000만원/);await page.screenshot({path:path.join(root,'artifacts/desktop.png'),fullPage:true});
  await route('02-horizon');assert.match(await page.locator('[data-results]').textContent(),/7.68억원/);await page.locator('[name=rate]').fill('0');assert.match(await page.locator('[data-results]').textContent(),/4.20억원/);
  await route('03-risk');assert.match(await page.locator('[data-output]').textContent(),/2,400만원/);
  await route('04-allocation');assert.match(await page.locator('[data-output]').textContent(),/4,080만원/);
